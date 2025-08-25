@@ -1,6 +1,6 @@
-package com.xworkz.Bakery.repository;
+package com.xworkz.cafe.repository;
 
-import com.xworkz.Bakery.dto.RegisterDTO;
+import com.xworkz.cafe.dto.RegisterDTO;
 
 import java.sql.*;
 

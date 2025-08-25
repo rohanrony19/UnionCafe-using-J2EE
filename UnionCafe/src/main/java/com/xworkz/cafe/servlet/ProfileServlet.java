@@ -1,8 +1,8 @@
-package com.xworkz.Bakery.servlet;
+package com.xworkz.cafe.servlet;
 
-import com.xworkz.Bakery.dto.RegisterDTO;
-import com.xworkz.Bakery.service.RegisterService;
-import com.xworkz.Bakery.service.RegisterServiceImpli;
+import com.xworkz.cafe.dto.RegisterDTO;
+import com.xworkz.cafe.service.RegisterService;
+import com.xworkz.cafe.service.RegisterServiceImpli;
 //import sun.plugin.dom.core.Element;
 
 import javax.servlet.RequestDispatcher;

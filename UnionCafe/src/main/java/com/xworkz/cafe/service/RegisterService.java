@@ -1,6 +1,6 @@
-package com.xworkz.Bakery.service;
+package com.xworkz.cafe.service;
 
-import com.xworkz.Bakery.dto.RegisterDTO;
+import com.xworkz.cafe.dto.RegisterDTO;
 
 public interface RegisterService {
     String validate(RegisterDTO registerDTO);
