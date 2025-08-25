@@ -1,6 +1,6 @@
-package com.xworkz.Bakery.servlet;
-import com.xworkz.Bakery.service.RegisterService;
-import com.xworkz.Bakery.service.RegisterServiceImpli;
+package com.xworkz.cafe.servlet;
+import com.xworkz.cafe.service.RegisterService;
+import com.xworkz.cafe.service.RegisterServiceImpli;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
