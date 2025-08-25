@@ -1,0 +1,1217 @@
+<!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
+<!--<%@ page isELIgnored="false" %>-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .wide-search-form {
+            width: 100%;
+            max-width: 600px;
+        }
+        .btn-outline-success{
+        color:#0081a3;
+        border-color:#0081a3;
+        }
+
+        .btn-outline-success:hover {
+    background-color: #0081a3 !important;
+    color: white !important;
+    border-color: #0081a3 !important;
+}
+
+
+
+        .wide-search-form .form-control {
+            flex-grow: 1;
+
+        }
+
+        @media (min-width: 768px) {
+            .wide-search-form {
+                min-width: 400px;
+            }
+        }
+
+
+            .nav-alter {
+    background-color: transparent;  /* transparent background */
+    position: sticky;                /* make it fixed at top */
+    top: 0;
+    left:50%;                        * move it slightly down */
+    transform: translateX(-50%);    /* perfect center */
+    z-index: 1000;
+    width: auto;                    /* shrink to content */
+    padding: 10px 60px;             /* spacing around navbar */
+    border-radius: 50px;            /* rounded edges like a pill */
+    backdrop-filter: blur(1px);     /* optional frosted glass effect */
+}
+.nav-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+<!--        .hero-banner {-->
+<!--    width: 100vw;         /* full screen width */-->
+<!--    height: 800px;        /* fixed height like Amazon banner */-->
+<!--    object-fit: cover;    /* crop but cover entire space */-->
+<!--    border: none;-->
+<!--    border-radius: 0;-->
+<!--    box-shadow: none;-->
+<!--    display: block;-->
+<!--    margin:0;-->
+
+<!--}-->
+.hero-banner {
+    position: absolute;         /* position image at very top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+    z-index: 0;                 /* behind navbar */
+    filter:brightness(50%);
+}
+
+.remaining-body {
+    margin-top: 80px;           /* create space for fixed navbar */
+}
+
+.main-content {
+    margin-top: 600px; /* image height (800px) + navbar height (60px) gives 860px*/
+    padding: 20px;
+    padding-bottom:70px;
+    flex:1;
+}
+
+
+
+        .nav-link {
+            color: white;
+            justify-content-space-between;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            padding-top: 2px;
+            height:20px;
+            font-size:30px;
+            margin-left:6px;
+            padding-bottom:30px;
+
+        }
+
+        .nav-link:hover{
+            color:#0081a3;
+        }
+
+        <!--.nav-item{-->
+        <!--    padding-top: 2px;-->
+        <!--    height:20px;-->
+        <!--    font-size:30px;-->
+        <!--    margin-left:8px;-->
+        <!--    padding-bottom:30px;-->
+
+        <!--}-->
+
+        .category {
+            margin-top:2px;
+            color: #0081a3; /* Deep purple */
+            font-family: 'Playfair Display', serif; /* Elegant font */
+            font-style: italic;
+            display: flex;
+            align-items: center; /* Corrected */
+            justify-content: space-evenly;
+            font-weight: bold; /* Extra bold */
+            font-size: 1.8rem; /* Slightly bigger for visibility */
+            letter-spacing: 2px; /* Spacing for stylish feel */
+            text-transform: uppercase; /* Optional: make it all caps */
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+            margin-bottom:10px;
+        }
+        .top-products{
+            margin-top:20px;
+            color: #0081a3; /* Deep purple */
+            font-family: 'Playfair Display', serif; /* Elegant font */
+            font-style: italic;
+            display: flex;
+            align-items: center; /* Corrected */
+            justify-content: space-evenly;
+            font-weight: bold; /* Extra bold */
+            font-size: 1.8rem; /* Slightly bigger for visibility */
+            letter-spacing: 2px; /* Spacing for stylish feel */
+            text-transform: uppercase; /* Optional: make it all caps */
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+
+        body, html {
+            height: 100%;
+            <!--margin: 0;-->
+            background-color: white;
+            <!--padding:0;-->
+            <!--min-height:100vh;-->
+            display:flex;
+            flex-direction:column;
+            scroll-behavior:smooth;
+        }
+        main{
+            flex:1;
+        }
+        .display-area {
+            padding: 2rem 0;
+        }
+
+        .card {
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            width: 250px;
+            height: 400px;
+            margin: 10px;
+        }
+
+        .category-image:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .card-body {
+            margin-left: 10px;
+        }
+
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .btn-cart {
+            background-color: #0081a3;
+            border-color: #4a148c;
+        }
+
+        .btn-cart:hover {
+            background-color: #004051;
+            border-color: #004051;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer {
+            background-color: #0081a3;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .pagination {
+            justify-content: center;
+
+        }
+        .pagination .page-link {
+    color: #0081a3; /* Your desired text color */
+}
+
+
+        .top-image{
+            align-item:center;
+            display:flex;
+        }
+
+        .account{
+            margin-bottom:10px;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        .category-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-card {
+            width: 200px;
+            padding: 15px;
+        }
+
+        .category-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px auto;
+            display: block;
+            border:3px solid #0081a3;
+        }
+
+        .category-card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #5a3e2b;
+        }
+
+        .category-card1{
+            background-color: null;
+            text-align:center;
+        }
+
+        .hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0); /* subtle dark overlay behind text */
+    padding: 20px;
+    border-radius: 10px;
+}
+.welcome {
+    font-size: 4rem; /* Makes it big (adjust as needed) */
+    font-family: 'Playfair Display', serif; /* Example elegant font */
+    font-style: italic;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    white-space: nowrap;  /* Prevent text from wrapping to next line */
+    overflow: hidden;
+}
+.book{
+ margin-top:2px;
+            color: #0081a3; /* Deep purple */
+            font-family: 'Playfair Display', serif; /* Elegant font */
+            font-style: italic;
+            display: flex;
+            align-items: center; /* Corrected */
+            justify-content: space-evenly;
+            font-weight: bold; /* Extra bold */
+            font-size: 1.8rem; /* Slightly bigger for visibility */
+            letter-spacing: 2px; /* Spacing for stylish feel */
+            text-transform: uppercase; /* Optional: make it all caps */
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+
+            margin-bottom:10px;
+}
+.btn-primary {
+margin-top:20px;
+    background-color: transparent;
+    border-color: #0081a3;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #0081a3 !important;
+    border-color: white !important;
+}
+
+
+        * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Newsletter Section */
+    .newsletter-section {
+      background: url('https://images.unsplash.com/photo-1505739778514-b98f8efe3afe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80') no-repeat center center/cover;
+      padding: 120px 20px;
+      <!--flex-grow: 1;-->
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      margin:0;
+      <!--margin-top:1000px;-->
+    }
+
+    .newsletter-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    .newsletter-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 100%;
+    }
+
+
+
+    .newsletter-heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+      line-height: 1.1;
+    }
+
+    .newsletter-heading strong {
+      font-weight: 900;
+      font-size: 3rem;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      -webkit-text-stroke: 1px black;
+    }
+
+    .newsletter-subtext {
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+      color: #eee;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.4;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex-grow: 1;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      background-color: #1e3a8a; /* dark blue */
+      border: none;
+      color: white;
+      padding: 11px 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #14407d;
+    }
+
+    /* Footer */
+    footer {
+    position:relative;
+      background-color: #1e3a8a;
+      padding: 40px 20px 30px;
+      color: white;
+      font-size: 0.9rem;
+      margin-bottom:0;
+    }
+
+    .footer-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-logo-contact,
+    .footer-links,
+    .footer-social {
+      flex: 1 1 250px;
+    }
+
+    .footer-logo-contact img {
+      width: 120px;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo-contact p {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      max-width: 250px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .contact-info {
+      font-size: 0.85rem;
+      margin-top: 10px;
+      line-height: 1.3;
+    }
+
+    .contact-info div {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-info svg {
+      fill: white;
+      min-width: 18px;
+      min-height: 18px;
+    }
+
+    .footer-links h4 {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: #bcd0f7;
+      text-decoration: none;
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-social h4 {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #d0d0d0;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.8rem;
+      margin-top: 30px;
+      color: #aac6ff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .newsletter-content {
+        padding: 0 10px;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+      .newsletter-form input,
+      .newsletter-form button {
+        width: 100%;
+      }
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .footer-logo-contact,
+      .footer-links,
+      .footer-social {
+        flex: none;
+        width: 100%;
+      }
+    }
+
+.second-img {
+  width: 100%;
+  min-height: 40vh;
+  background-image: url("https://w0.peakpx.com/wallpaper/534/510/HD-wallpaper-cafe-with-a-view-cafe-cool-restaurant-interior-design.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display:flex;
+  align-item:center;
+  justify-content:center;
+  color:white;
+}
+<!--.second-img::before {-->
+<!--  content: "";-->
+<!--  position: absolute;-->
+<!--  top: 0;-->
+<!--  left: 0;-->
+<!--  width: 100%;-->
+<!--  height: 100%;-->
+<!--  background: rgba(0, 0, 0, 0.6); /* adjust 0.6 for darkness */-->
+<!--  z-index: 1;-->
+<!--}-->
+
+/* Content inside stays above overlay */
+<!--.second-img > * {-->
+<!--  position: relative;-->
+<!--  z-index: 2;-->
+<!--}-->
+
+
+<!--.second-img img {-->
+<!--  position: absolute;   /* position image absolutely for cropping */-->
+<!--  top: 0;-->
+<!--  left: 0;             /* aligns image to very left */-->
+<!--  width: 100%;         /* image fills container width */-->
+<!--  height: 100%;        /* image fills container height */-->
+<!--  object-fit: cover;   /* crop image to cover container */-->
+<!--  object-position: center; /* crop focusing on left */-->
+<!--}-->
+.table{
+margin-top:16px;
+
+        height:470px;
+        width:650px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="body">
+    <div class="nav-alter">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+<!--                    <img src="https://png.pngtree.com/png-vector/20220224/ourmid/pngtree-cake-logo-for-cafe-and-sweets-business-png-image_4461904.png" alt="Logo" class="logo-img">-->
+                    <h1 class="nav-link">UnionCafe`</h1>
+                </a>
+
+                <form class="d-flex wide-search-form" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" style="color:#0081a3">Search</button>
+                </form>
+
+                <div>
+                <nav id="navbar" class="navbar navbar-expand-lg">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color:white">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home" href="#">
+                                    <i class="fa-regular fa-house fa-sm"></i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Category" href="#">
+                                    <i class="fa-solid fa-layer-group fa-sm"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Booking" href="#">
+                                    <i class="fa-solid fa-utensils fa-sm"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cart" href="Cart.jsp">
+                                    <i class="fa-solid fa-cart-shopping fa-xs"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Favorite" href="Profile.jsp">
+                                    <i class="fa-regular fa-heart fa-sm " ></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact" href="Profile.jsp">
+                                    <i class="fa-regular fa-comment-dots fa-sm"></i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile" href="Profile.jsp ">
+                                    <i class="fa-regular fa-circle-user fa-sm"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl, {
+        trigger: 'hover'  // show tooltip only on hover
+      })
+    })
+
+    // Hide tooltip on click
+    tooltipTriggerList.forEach(function (el) {
+      el.addEventListener('click', function () {
+        var tooltip = bootstrap.Tooltip.getInstance(el)
+        if (tooltip) {
+          tooltip.hide()
+        }
+      })
+    });
+
+    </script>
+    <div class="remaining-body">
+    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">
+        <div class="card-body text-center">
+            <img src="$%7BpageContext.request.contextPath%7D/Images/bg_1.jpg"
+                 alt="Bakery Items" class="hero-banner" style="background-color: rgba(0,0,0,0.6)">
+        </div>
+    </div>
+    </div>
+    <div class="hero-overlay">
+    <!--<div style="position: relative; display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">-->
+    <!--    <div class="card-body text-center">-->
+    <!--        <img src="bg_1.jpg" alt="Bakery Items" class="hero-banner" style="width: 100%; height: auto;">-->
+
+            <!-- Overlay content -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                    <h1 class="welcome">Welcome to UnionCafe`</h1>
+                    <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles await you</p>
+                    <button class="btn btn-primary me-2">Dine-In</button>
+                    <button class="btn btn-primary me-2">Take-Away</button>
+                </div>
+        </div>
+    </div>
+
+
+    <!--    <hr style="border: none; border-top: 3px solid white; margin: 20px 0;">-->
+    <div class="main-content">
+        <br/>
+        <div class="category">
+            <h3>Category</h3>
+        </div>
+
+        <div class="category-row d-flex justify-content-center flex-wrap">
+
+            <!-- Card 1 -->
+            <div class="category-card1">
+                <a href="../Category/Cake.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
+                     class="card-img-top category-image"
+                     alt="Black Forest Cake">
+                <h5 class="category-card-title">Cakes</h5>
+                </a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="category-card1">
+                <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://www.shutterstock.com/image-photo/close-fresh-croissant-on-craft-600nw-2573578609.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Pastries</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Burger.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Burger</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Pizza</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://wallpapercave.com/wp/wp3064856.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Desserts</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://static.vecteezy.com/system/resources/previews/035/251/734/non_2x/indian-famous-fresh-dry-fruits-sweets-photo.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Sweets</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://lemonsandzest.com/wp-content/uploads/2020/02/Small-Batch-Chocolate-Chip-Cookies-Recipe-3.10.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Cookies</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">IceCreams</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Cake.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
+                         class="card-img-top category-image"
+                         alt="Black Forest Cake">
+                    <h5 class="category-card-title">Cakes</h5>
+                </a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="category-card1">
+                <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://www.shutterstock.com/image-photo/close-fresh-croissant-on-craft-600nw-2573578609.jpg"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">Pastries</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Burger.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">Burger</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">Pizza</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://wallpapercave.com/wp/wp3064856.jpg"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">Desserts</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://static.vecteezy.com/system/resources/previews/035/251/734/non_2x/indian-famous-fresh-dry-fruits-sweets-photo.jpg"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">Sweets</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://lemonsandzest.com/wp-content/uploads/2020/02/Small-Batch-Chocolate-Chip-Cookies-Recipe-3.10.jpg"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">Cookies</h5>
+                </a>
+            </div>
+            <div class="category-card1">
+                <a href="../Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
+                    <img src="https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg"
+                         class="card-img-top category-image"
+                         alt="Chocolate Cake">
+                    <h5 class="category-card-title">IceCreams</h5>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+<div class="second-img mb-5" >
+    <!--<img src="" alt="table-img" />-->
+<h1>HHiiiii</h1>
+</div>
+
+<h1 class="book">Book A Table Now</h1>
+<div class="Booking">
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <!-- Form Column -->
+            <div class="col-md-6">
+                <form action="#" method="post" class="p-4 border rounded" style="background-color: #0081a3; color: white;">
+                    <h3 class="mb-4 text-center" style="color: white;">Book Your Table</h3>
+
+                    <div class="row mb-3 align-items-center">
+                        <label for="name" class="col-sm-4 col-form-label">Name:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <label for="email" class="col-sm-4 col-form-label">Email *</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <label for="phone" class="col-sm-4 col-form-label">Phone Number *</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <label for="checkin-date" class="col-sm-4 col-form-label">Check-in Date *</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="checkin-date" name="checkin" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <label for="time" class="col-sm-4 col-form-label">Time *</label>
+                        <div class="col-sm-8">
+                            <input type="time" class="form-control" id="time" name="time" value="04:00:00" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <label for="guests" class="col-sm-4 col-form-label">Number of Guests *</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="guests" name="guests" min="1" max="20" value="1" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-light w-100">Book Now</button>
+                </form>
+            </div>
+
+            <!-- Image Column -->
+            <div class="table col-md-6 d-flex justify-content-center">
+                <img src="$%7BpageContext.request.contextPath%7D/Images/img.png" alt="Booking Table" class="img-fluid rounded" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <div class="top-products mb-5">
+        <h3>Top Products</h3>
+    </div>
+</div>
+
+    <div class="display-area d-flex flex-wrap justify-content-center">
+        <!-- Product 1 -->
+        <div class="card h-50">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkPHN7XscGo6sNbVVKgNkV6sDO7LTYj6Nklw&s" class="card-img-top" alt="Black Forest Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Black Forest</h5>
+                <p class="card-text">Chocolate creamy dark forest cake with fresh fruits</p>
+                <p class="card-text"><strong>Price: $10.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Black%20Forest&price=10.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="card h-50">
+            <img src="https://thumbs.dreamstime.com/b/creamy-mascarpone-cheese-cake-strawberry-winter-berries-new-york-cheesecake-close-up-christmas-dessert-healthy-78995578.jpg" class="card-img-top" alt="Cheesecake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Cheese Cake</h5>
+                <p class="card-text">Creamy cheesecake with a graham cracker crust</p>
+                <p class="card-text"><strong>Price: $8.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Cheese%20Cake&price=8.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="card h-50">
+            <img src="https://media.istockphoto.com/id/1466673520/photo/no-baked-blueberry-layered-cheesecake.jpg?s=612x612&w=0&k=20&c=_zzCUASpR6yBQYV-mR0AU1vcICHxlBonnj59f0qX3mk=" class="card-img-top" alt="Blueberry Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Blueberry Cake</h5>
+                <p class="card-text">Delicious blueberry cake with fruit crush</p>
+                <p class="card-text"><strong>Price: $9.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Blueberry%20Cake&price=9.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="card h-50">
+            <img src="https://images.squarespace-cdn.com/content/v1/50b9b13ee4b012760adc9e24/1561532567665-ZS2OTEJW9HZ2SLM82IC0/carrot-cake.jpg" class="card-img-top" alt="Carrot Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Carrot Cake</h5>
+                <p class="card-text">Moist carrot cake topped with cream cheese frosting</p>
+                <p class="card-text"><strong>Price: $10.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Carrot%20Cake&price=10.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="card h-50">
+            <img src="https://thumbs.dreamstime.com/b/closeup-tangy-lemon-cake-round-creation-hd-k-wallpaper-stock-photographic-image-generated-ai-342636719.jpg" class="card-img-top" alt="Lemon Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Lemon Cake</h5>
+                <p class="card-text">Zesty lemon cake with a light lemon glaze</p>
+                <p class="card-text"><strong>Price: $8.50</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Lemon%20Cake&price=8.50" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="card h-50">
+            <img src="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg" class="card-img-top" alt="Strawberry Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Strawberry Cake</h5>
+                <p class="card-text">Delicious strawberry cake with fresh strawberries</p>
+                <p class="card-text"><strong>Price: $9.50</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Strawberry%20Cake&price=9.50" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="card h-50">
+            <img src="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg" class="card-img-top" alt="Vanilla Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Vanilla Cake</h5>
+                <p class="card-text">Classic vanilla cake with buttercream frosting</p>
+                <p class="card-text"><strong>Price: $7.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Vanilla%20Cake&price=7.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="card h-50">
+            <img src="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg" class="card-img-top" alt="Chocolate Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Chocolate Cake</h5>
+                <p class="card-text">Rich chocolate cake with chocolate ganache</p>
+                <p class="card-text"><strong>Price: $11.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Chocolate%20Cake&price=11.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="card h-50">
+            <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1" class="card-img-top" alt="Red Velvet Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Red Velvet Cake</h5>
+                <p class="card-text">Delicious red velvet cake with cream cheese frosting</p>
+                <p class="card-text"><strong>Price: $12.00</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Red%20Velvet%20Cake&price=12.00" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="card h-50">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/028/140/156/small_2x/whole-coconut-cake-on-tplate-photo.jpg" class="card-img-top" alt="Coconut Cake">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Coconut Cake</h5>
+                <p class="card-text">Moist coconut cake topped with coconut cream frosting</p>
+                <p class="card-text"><strong>Price: $10.50</strong></p>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp?product=Coconut%20Cake&price=10.50" class="btn btn-cart text-white">Add to Cart</a>
+                        <div class="quantity-control">
+                            <button class="btn btn-sm btn-outline-secondary">-</button>
+                            <span>1</span>
+                            <button class="btn btn-sm btn-outline-secondary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer with Pagination -->
+    <!--<div class="footer">-->
+    <!--    <nav aria-label="Page navigation">-->
+    <!--        <ul class="pagination">-->
+    <!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+    <!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+    <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <!--            <li class="page-item"><a class="page-link" href="#">4</a></li>-->
+    <!--            <li class="page-item"><a class="page-link" href="#">5</a></li>-->
+    <!--        </ul>-->
+    <!--    </nav>-->
+    <!--    <p>&copy; 2023 Cake Shop. All rights reserved.</p>-->
+    <!--</div>-->
+
+
+
+<section class="newsletter-section " aria-label="Newsletter subscription">
+    <div class="newsletter-content">
+        <h2 class="newsletter-heading">
+            ¡Suscribete a nuestro <strong>Newsletter!</strong>
+        </h2>
+        <p class="newsletter-subtext">
+            Obtén actualizaciones únicas, acceso a descuentos especiales, promociones,
+            ofertas y contenido gratuito al alcance de un botón.
+        </p>
+        <form class="newsletter-form" action="#" method="post">
+            <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    aria-label="Email address"
+                    required
+            />
+            <button type="submit">Suscribirse</button>
+        </form>
+    </div>
+</section>
+<footer class="mt-5">
+    <div class="footer-container">
+        <div class="footer-logo-contact">
+            <!-- Replace with actual logo if available -->
+            <img src="https://cdn-icons-png.flaticon.com/512/2099/2099077.png" alt="CEDIR Logo" />
+            <p>Centro de enseñanza, distribuidor en ingeniería y robótica</p>
+            <div class="contact-info">
+                <div><i class="fas fa-envelope"></i> contacto@electronica-cedir-qro.com</div>
+                <div><i class="fas fa-phone-alt"></i> +52 442 152 1401</div>
+                <div><i class="fas fa-map-marker-alt"></i> 716 Kiliwas, Col. Ex-Hacienda Santa Ana, Querétaro, Querétaro, Mex.</div>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h4>Links de interés</h4>
+            <a href="#">Agendar una consulta</a>
+            <a href="#">Términos y Condiciones de Uso de Cedir</a>
+            <a href="#">Política de reembolsos y devoluciones de Cedir</a>
+            <a href="#">Política de privacidad</a>
+        </div>
+
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <p class="copyright">&copy; Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
