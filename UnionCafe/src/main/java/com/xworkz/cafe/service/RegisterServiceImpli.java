@@ -1,8 +1,8 @@
-package com.xworkz.Bakery.service;
+package com.xworkz.cafe.service;
 
-import com.xworkz.Bakery.dto.RegisterDTO;
-import com.xworkz.Bakery.repository.RegisterRepository;
-import com.xworkz.Bakery.repository.RegisterRepositoryImpli;
+import com.xworkz.cafe.dto.RegisterDTO;
+import com.xworkz.cafe.repository.RegisterRepository;
+import com.xworkz.cafe.repository.RegisterRepositoryImpli;
 
 import java.util.ArrayList;
 import java.util.List;

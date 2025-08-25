@@ -1,4 +1,4 @@
-package com.xworkz.Bakery.dto;
+package com.xworkz.cafe.dto;
 
 import lombok.*;
 
