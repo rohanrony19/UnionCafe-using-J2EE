@@ -526,17 +526,17 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             z-index: 1;
         }
 
-/* main bold heading */
-.heading-section .recent-blog {
-    color: #333;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
-    font-weight: bold;
-    position: relative;
-    z-index: 2; /* above background, below subhead */
-    margin: 0;
-    margin-top:60px;
-}
+        /* main bold heading */
+        .heading-section .recent-blog {
+            color: #333;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: bold;
+            position: relative;
+            z-index: 2; /* above background, below subhead */
+            margin: 0;
+            margin-top:60px;
+        }
 
         .contact-section {
             background: #0081a3;
