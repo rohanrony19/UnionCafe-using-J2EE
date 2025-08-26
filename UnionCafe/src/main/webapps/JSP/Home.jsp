@@ -222,7 +222,6 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             overflow: hidden;
         }
 
-
         /* category */
         .heading{
             margin-top: 600px; /* image height (800px) + navbar height (60px) gives 860px*/
