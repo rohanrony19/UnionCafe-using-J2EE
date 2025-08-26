@@ -63,59 +63,58 @@
             text-decoration: none;
         }
 
-.navbar-brand .nav-link {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: bold;
-    color: white;
-    margin: 0;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
+        .navbar-brand .nav-link {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: bold;
+            color: white;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
 
-.navbar-brand .nav-link:hover {
-    color: #0081a3;
-}
+        .navbar-brand .nav-link:hover {
+            color: #0081a3;
+        }
 
-.navbar-nav .nav-link {
-    color: white;
-    font-size: 18px;
-}
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 18px;
+        }
 
-.navbar-nav .nav-link:hover {
-    color: #0081a3;
-}
+        .navbar-nav .nav-link:hover {
+            color: #0081a3;
+        }
 
-.navbar-brand .nav-link,
-.navbar-nav .nav-link {
-    color: white;
-    transition: color 0.3s, background-color 0.3s, padding 0.3s, font-size 0.3s;
-}
+        .navbar-brand .nav-link,
+        .navbar-nav .nav-link {
+            color: white;
+            transition: color 0.3s, background-color 0.3s, padding 0.3s, font-size 0.3s;
+        }
 
-.nav-alter {
-    background-color: transparent;
-    <!--padding: 15px 30px;             /* bigger padding = taller navbar */-->
-    border-radius: 50px;
-    transition: all 0.3s ease-in-out;
-    font-size:20px;
-    border-radius: 15px;
-    padding-left:65px;
-}
+        .nav-alter {
+            background-color: transparent;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            font-size:20px;
+            border-radius: 15px;
+            padding-left:65px;
+        }
 
-/* On scroll - slim variant */
-.nav-alter.scrolled {
-    background-color: white;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 8px 25px;              /* reduced padding = smaller height */
-    border-radius: 50px;
-    padding-left:65px;
-               font-size:20px;/* sharper corners when scrolled */
-}
+        /* On scroll - slim variant */
+        .nav-alter.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 8px 25px;              /* reduced padding = smaller height */
+            border-radius: 50px;
+            padding-left:65px;
+            font-size:20px;/* sharper corners when scrolled */
+        }
 
-/* Text color when scrolled */
-.nav-alter.scrolled .navbar-brand .nav-link,
-.nav-alter.scrolled .navbar-nav .nav-link {
-    color: #333;   /* dark gray for visibility */
-    text-shadow: none;
+        /* Text color when scrolled */
+        .nav-alter.scrolled .navbar-brand .nav-link,
+        .nav-alter.scrolled .navbar-nav .nav-link {
+            color: #333;   /* dark gray for visibility */
+            text-shadow: none;
     font-size:20px;
 }
 
