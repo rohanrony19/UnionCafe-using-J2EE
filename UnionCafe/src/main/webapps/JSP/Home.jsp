@@ -31,66 +31,159 @@
             padding: 2rem 0;
         }
 
-        <!--navbar-->
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
-        .nav-alter {
-            background-color: transparent;  /* transparent background */
-            position: sticky;                /* make it fixed at top */
-            top: 0;
-            left:50%;                        * move it slightly down */
-            transform: translateX(-50%);    /* perfect center */
-            z-index: 1000;
-            width: auto;                    /* shrink to content */
-            padding: 10px 60px;             /* spacing around navbar */
-            border-radius: 50px;            /* rounded edges like a pill */
-            backdrop-filter: blur(1px);     /* optional frosted glass effect */
-        }
-        .nav-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-        .nav-link {
-            color: white;
-            justify-content-space-between;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-            padding-top: 2px;
-            height:20px;
-            font-size:30px;
-            margin-left:6px;
-            padding-bottom:30px;
-        }
-        .nav-link:hover{
-            color:#0081a3;
-        }
+/* navbar wrapper */
+/* ==============================
+   NAVBAR WRAPPER
+   ============================== */
+.nav-alter {
+    background-color: transparent;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 
-        <!--search-->
-        .wide-search-form {
-            width: 100%;
-            max-width: 600px;
-        }
-        .btn-outline-success{
-            color:#0081a3;
-            border-color:#0081a3;
-        }
-        .btn-outline-success:hover {
-            background-color: #0081a3 !important;
-            color: white !important;
-            border-color: #0081a3 !important;
-        }
-        .wide-search-form .form-control {
-            flex-grow: 1;
-        }
+    display: flex;
+    align-items: center;             /* vertical alignment */
+    justify-content: space-between;
 
-        @media (min-width: 768px) {
-            .wide-search-form {
-                min-width: 500px;
-            }
-        }
+    width: 90%;
+    max-width: 1200px;
+    padding: 10px 20px;
+
+    border-radius: 50px;
+    backdrop-filter: blur(6px);
+}
+
+/* ==============================
+   NAVBAR CONTAINER
+   ============================== */
+.nav-alter .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+/* ==============================
+   BRAND (logo + text)
+   ============================== */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+    text-decoration: none;
+}
+
+/* Brand text */
+.navbar-brand .nav-link {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 34px;
+    color: white;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.navbar-brand .nav-link:hover {
+    color: #0081a3;
+}
+
+/* ==============================
+   NAV LINKS
+   ============================== */
+.navbar-nav .nav-link {
+    color: white;
+    font-size: 18px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0081a3;
+}
+/* Default styles (top of page, transparent) */
+.navbar-brand .nav-link,
+.navbar-nav .nav-link {
+    color: white;
+
+    transition: color 0.3s, background-color 0.3s, padding 0.3s, font-size 0.3s;
+}
+
+.nav-alter {
+    background-color: transparent;
+    padding: 15px 30px;             /* bigger padding = taller navbar */
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    font-size:20px;
+}
+
+/* On scroll - slim variant */
+.nav-alter.scrolled {
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 8px 25px;              /* reduced padding = smaller height */
+    border-radius: 15px;
+    padding-left:65px;
+               font-size:20px;/* sharper corners when scrolled */
+}
+
+/* Text color when scrolled */
+.nav-alter.scrolled .navbar-brand .nav-link,
+.nav-alter.scrolled .navbar-nav .nav-link {
+    color: #333;   /* dark gray for visibility */
+    text-shadow: none;
+    font-size:20px;
+}
+
+/* Hover accent */
+.navbar-nav .nav-link:hover,
+.navbar-brand .nav-link:hover,
+.nav-alter.scrolled .navbar-nav .nav-link:hover,
+.nav-alter.scrolled .navbar-brand .nav-link:hover {
+    color: #0081a3;
+}
+
+
+
+/* ==============================
+   SEARCH BAR
+   ============================== */
+.wide-search-form {
+    flex-grow: 1;              /* takes available space */
+    max-width: 600px;
+    margin: 0 20px;
+
+}
+
+
+.wide-search-form .form-control {
+    flex-grow: 1;
+    max-width:400px;
+    display:flex;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    background-color: white;
+}
+
+.btn-outline-success {
+    color: #0081a3;
+    border-color: #0081a3;
+box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    background-color: white;
+}
+.btn-outline-success:hover {
+    background-color: #0081a3 !important;
+    color: white !important;
+    border-color: #0081a3 !important;
+}
+
+@media (min-width: 768px) {
+    .wide-search-form {
+        min-width: 500px;
+    }
+}
+
 
         /* hero */
         .hero-banner {
@@ -134,7 +227,7 @@
             margin-top: 600px; /* image height (800px) + navbar height (60px) gives 860px*/
             padding: 20px;
             padding-bottom:70px;
-            flex:1;
+            <!--flex:1;-->
         }
         .category {
             margin-top:2px;
@@ -696,7 +789,7 @@
                 <div>
                     <nav id="navbar" class="navbar navbar-expand-lg">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color:white">
+                            <ul class="navbar-nav d-flex flex-row gap-3">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
                                        data-bs-placement="bottom" title="Home" href="#">
@@ -765,6 +858,14 @@
         }
       })
     });
+window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".nav-alter");
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
 
     </script>
     <div class="hero-body">
@@ -792,7 +893,7 @@
     <div class="category">
         <h3>Category</h3>
     </div>
-
+</div>
     <div class="category-row d-flex justify-content-center flex-wrap">
 
         <!-- Card 1 -->
@@ -931,7 +1032,7 @@
 
 
     </div>
-</div>
+
 
 
 <div class="second-img mb-5">
