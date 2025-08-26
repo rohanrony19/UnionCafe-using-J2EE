@@ -10,79 +10,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
           integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         <!--body-->
         body, html {
-            height: 100%;
-            font-family: Arial, sans-serif;
             background-color: #ffffff;
-            color: white;
             display: flex;
-            min-height: 100vh;
+            width:100%;
+            min-width:100vh;
             flex-direction:column;
             scroll-behavior:smooth;
         }
-        main{
-            flex:1;
+
+
+        /* navbar wrapper */
+        .nav-alter {
+            background-color: transparent;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;             /* vertical alignment */
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            backdrop-filter: blur(6px);
         }
-        .display-area {
-            padding: 2rem 0;
+
+        .nav-alter .container-fluid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
         }
 
-/* navbar wrapper */
-/* ==============================
-   NAVBAR WRAPPER
-   ============================== */
-.nav-alter {
-    background-color: transparent;
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            left:20px;
+            color: white;
+            text-decoration: none;
+        }
 
-    display: flex;
-    align-items: center;             /* vertical alignment */
-    justify-content: space-between;
-
-    width: 90%;
-    max-width: 1200px;
-    padding: 10px 20px;
-
-    border-radius: 50px;
-    backdrop-filter: blur(6px);
-}
-
-/* ==============================
-   NAVBAR CONTAINER
-   ============================== */
-.nav-alter .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 20px;
-}
-
-/* ==============================
-   BRAND (logo + text)
-   ============================== */
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: white;
-    text-decoration: none;
-}
-
-/* Brand text */
 .navbar-brand .nav-link {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 34px;
+    font-size: bold;
     color: white;
     margin: 0;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -92,9 +76,6 @@
     color: #0081a3;
 }
 
-/* ==============================
-   NAV LINKS
-   ============================== */
 .navbar-nav .nav-link {
     color: white;
     font-size: 18px;
@@ -103,20 +84,21 @@
 .navbar-nav .nav-link:hover {
     color: #0081a3;
 }
-/* Default styles (top of page, transparent) */
+
 .navbar-brand .nav-link,
 .navbar-nav .nav-link {
     color: white;
-
     transition: color 0.3s, background-color 0.3s, padding 0.3s, font-size 0.3s;
 }
 
 .nav-alter {
     background-color: transparent;
-    padding: 15px 30px;             /* bigger padding = taller navbar */
+    <!--padding: 15px 30px;             /* bigger padding = taller navbar */-->
     border-radius: 50px;
     transition: all 0.3s ease-in-out;
     font-size:20px;
+    border-radius: 15px;
+    padding-left:65px;
 }
 
 /* On scroll - slim variant */
@@ -124,7 +106,7 @@
     background-color: white;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     padding: 8px 25px;              /* reduced padding = smaller height */
-    border-radius: 15px;
+    border-radius: 50px;
     padding-left:65px;
                font-size:20px;/* sharper corners when scrolled */
 }
@@ -145,11 +127,6 @@
     color: #0081a3;
 }
 
-
-
-/* ==============================
-   SEARCH BAR
-   ============================== */
 .wide-search-form {
     flex-grow: 1;              /* takes available space */
     max-width: 600px;
@@ -191,6 +168,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             top: 0;
             left: 0;
             width: 100%;
+            min-width:100vh;
             height: 800px;
             object-fit: cover;
             z-index: 0;                 /* behind navbar */
@@ -209,6 +187,15 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             background: rgba(0, 0, 0, 0); /* subtle dark overlay behind text */
             padding: 20px;
             border-radius: 10px;
+            width:100%;
+            max-width:90%;
+        }
+        @media (max-width: 768px) {
+            .welcome {
+                font-size: 2rem;        /* smaller text on mobile */
+                white-space: normal;    /* allow wrapping */
+                line-height: 1.2;
+            }
         }
         .welcome {
             font-size: 4rem; /* Makes it big (adjust as needed) */
@@ -220,18 +207,28 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             margin-bottom: 10px;
             white-space: nowrap;  /* Prevent text from wrapping to next line */
             overflow: hidden;
+            min-width:100vh;
         }
 
 
         /* category */
         .heading{
             margin-top: 600px; /* image height (800px) + navbar height (60px) gives 860px*/
-            padding: 20px;
-            padding-bottom:70px;
+
+            font-weight:bold;
+            <!--padding: 20px;-->
+            <!--padding-bottom:10px;-->
             <!--flex:1;-->
         }
+        .category h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            color: var(--bs-heading-color);
+        }
         .category {
-            margin-top:2px;
+            margin-top:4px;
             color: #0081a3; /* Deep purple */
             font-family: 'Playfair Display', serif; /* Elegant font */
             font-style: italic;
@@ -243,9 +240,8 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             letter-spacing: 2px; /* Spacing for stylish feel */
             text-transform: uppercase; /* Optional: make it all caps */
             text-align: center;
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom:10px;
+            margin-top:80px;
+            padding:20px;
         }
         .category-image:hover {
             transform: translateY(-6px);
@@ -268,6 +264,13 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             text-align: center;
             font-weight: 900;
             font-size: 1.8rem;
+        }
+        .top{
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            line-height: 1.2;
+            color: var(--bs-heading-color);
         }
         .card {
             margin-bottom: 1.5rem;
@@ -343,7 +346,28 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             text-align: center;
             font-weight: 900;
             font-size: 1.8rem;
-            margin-bottom:10px;
+            margin-bottom:1px;
+        }
+        @media (max-width: 768px) {
+            .book {
+                font-size: 1.4rem;            /* reduce size */
+                text-align: center;
+                margin: 20px 0;
+                line-height: 1.2;
+            }
+        }
+
+        .coffee-text{
+        color: white;
+        font-family: 'Playfair Display', serif; /* Elegant font */
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            <!--margin-bottom: 20px;-->
+            <!--z-index: 1;-->
         }
         .btn-primary {
             margin-top:20px;
@@ -378,6 +402,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             color:white;
             position:relative;
             text-align:center;
+            margin-top:40px;
         }
         .third-img {
             width: 100%;
@@ -413,6 +438,10 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         /* Blog */
         .blog-heading {
             color: white;
+            font-family: 'Playfair Display', serif; /* Elegant font */
+            font-style: italic;
+            display: flex;
+            align-items: center;
             font-size: 2.5rem;
             font-weight: bold;
             text-align: center;
@@ -463,30 +492,52 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         .blog-card .btn {
             border-radius: 0;
         }
-        .subheading {
-            font-weight: normal;
-            font-size: 40px;
-            display: block;
-            margin-bottom: 0;
-            color: rgba(0, 0, 0, 0.2);
-            color: #eb5860;
+        @media (max-width: 768px) {
+            .heading-section .subheading {
+                font-size: 1.4rem;            /* smaller script font */
+                top: -0.8em;                  /* adjust vertical alignment */
+            }
+            .heading-section .recent-blog {
+                font-size: 1.8rem;
+            }
+            .heading-section .row-blog {
+                font-size: 1.8rem;
+            }
+        }
+
+        .heading-section {
+            padding-left:40px;
             position: relative;
-            line-height: 1;
+            text-align: center; /* centers the text */
+        }
+
+        /* small script “Blog” */
+        .heading-section .subhead {
             font-family: "Dancing Script", cursive;
-            margin-bottom: -20px;
-            z-index: -1;
+            font-style:italic;
+            font-size: 40px;
+            padding-left:40px;
+            font-weight: normal;
+            color: #e57373; /* soft red */
+            position: absolute;        /* overlay above h2 */
+            top: -25px;                /* adjust vertical placement */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
         }
-        .recent-blog{
-            display: block;
-            color:black;
-            font-size: 1.5em;
-            margin-block-start: 0.83em;
-            margin-block-end: 0.83em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            font-weight: bold;
-            unicode-bidi: isolate;
-        }
+
+/* main bold heading */
+.heading-section .recent-blog {
+    color: #333;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+    z-index: 2; /* above background, below subhead */
+    margin: 0;
+    margin-top:60px;
+}
+
         .contact-section {
             background: #0081a3;
             padding: 60px 20px;
@@ -878,7 +929,7 @@ window.addEventListener("scroll", function() {
         </div>
     </div>
     <div class="hero-overlay">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+        <div style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); color: white; text-align: center;">
             <h1 class="welcome">Welcome to UnionCafe`</h1>
             <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles
                 await you</p>
@@ -894,7 +945,7 @@ window.addEventListener("scroll", function() {
     <div class="category">
         <h3>Category</h3>
     </div>
-</div>
+
     <div class="category-row d-flex justify-content-center flex-wrap">
 
         <!-- Card 1 -->
@@ -1034,12 +1085,12 @@ window.addEventListener("scroll", function() {
 
     </div>
 
+</div>
 
-
-<div class="second-img mb-5">
+<div class="second-img mb-5 py-5 mb-2 mt-5 ">
     <h1 class="coffee-text">Have a Coffee</h1>
 </div>
-<h1 class="book">Book A Table Now</h1>
+<h1 class="book" style="font-size:bold">Book A Table Now</h1>
 <div class="Booking">
     <div class="container my-5">
         <div class="row align-items-center">
@@ -1108,8 +1159,8 @@ window.addEventListener("scroll", function() {
 </div>
 
 <div>
-    <div class="top-products mb-5">
-        <h3>Top Products</h3>
+    <div class="top-products mb-8">
+        <h3 class="top">Top Products</h3>
     </div>
 </div>
 
@@ -1334,24 +1385,24 @@ window.addEventListener("scroll", function() {
 
 <div class="third-img py-5 mb-2 mt-5">
     <!--<img src="" alt="table-img" />-->
-    <h1 class="blog-heading">Blog</h1>
+    <h1 class="blog-heading">Toasting to the simple joys of life</h1>
 </div>
 <div class="container">
-    <div class="col-md-7 text-center heading-section">
-        <span class="subheading">Blog</span>
+    <div class=" text-center heading-section">
+        <span class="subhead">Blog</span>
         <h2 class="recent-blog mb-4">Recent Blog</h2>
 
     </div>
-    <div class="row row-blog justify-content-center g-4">
+    <div class="row row-blog justify-content-center">
         <!-- Blog Card 1 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="https://img.freepik.com/free-photo/top-view-coffee-cup-wooden-table_1232-2022.jpg"
+                <img src="$%7BpageContext.request.contextPath%7D/Images/image_3.jpg"
                      class="card-img-top" alt="Blog 1">
                 <div class="card-body">
-                    <small class="text-muted">August 3, 2020 | Admin</small>
-                    <h5 class="card-title mt-2">Even the all-powerful Pointing has no control about the blind texts</h5>
-                    <a href="#" class="btn btn-danger mt-3">Read more</a>
+                    <small class="text-muted">August 3, 2025 | Admin</small>
+                    <h5 class="card-title mt-2">Finding solace in the quiet moments with a good drink.</h5>
+                    <a href="#" class="btn mt-3" style="background-color:#0081a3; color:white">Read more</a>
                 </div>
             </div>
         </div>
@@ -1359,12 +1410,12 @@ window.addEventListener("scroll", function() {
         <!-- Blog Card 2 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="https://img.freepik.com/free-photo/interior-modern-cafe_181624-14746.jpg" class="card-img-top"
+                <img src="$%7BpageContext.request.contextPath%7D/Images/bg_4.jpg" class="card-img-top"
                      alt="Blog 2">
                 <div class="card-body">
-                    <small class="text-muted">August 3, 2020 | Admin</small>
-                    <h5 class="card-title mt-2">Even the all-powerful Pointing has no control about the blind texts</h5>
-                    <a href="#" class="btn btn-danger mt-3">Read more</a>
+                    <small class="text-muted">August 10, 2025 | Admin</small>
+                    <h5 class="card-title mt-2">A perfect place to dine, relax, and enjoy.</h5>
+                    <a href="#" class="btn mt-3" style="background-color:#0081a3; color:white">Read more</a>
                 </div>
             </div>
         </div>
@@ -1372,12 +1423,12 @@ window.addEventListener("scroll", function() {
         <!-- Blog Card 3 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="https://img.freepik.com/free-photo/modern-restaurant-interior_1232-2172.jpg"
+                <img src="$%7BpageContext.request.contextPath%7D/Images/image_2.jpg"
                      class="card-img-top" alt="Blog 3">
                 <div class="card-body">
-                    <small class="text-muted">August 3, 2020 | Admin</small>
-                    <h5 class="card-title mt-2">Even the all-powerful Pointing has no control about the blind texts</h5>
-                    <a href="#" class="btn btn-danger mt-3">Read more</a>
+                    <small class="text-muted">August 17, 2025 | Admin</small>
+                    <h5 class="card-title mt-2">Drink because you are happy, but never because you are miserable.</h5>
+                    <a href="#" class="btn mt-3 " style="background-color:#0081a3; color:white">Read more</a>
                 </div>
             </div>
         </div>
