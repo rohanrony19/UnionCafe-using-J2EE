@@ -44,6 +44,7 @@
             padding: 10px 20px;
             border-radius: 100px;
             backdrop-filter: blur(6px);
+
         }
 
         .nav-alter .container-fluid {
@@ -66,7 +67,8 @@
         .navbar-brand .nav-link {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: bold;
+            font-size:1.5rem;
+            font-weight: bold;
             color: white;
             margin: 0;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -78,7 +80,7 @@
 
         .navbar-nav .nav-link {
             color: white;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .navbar-nav .nav-link:hover {
@@ -107,7 +109,7 @@
             padding: 8px 25px;              /* reduced padding = smaller height */
             border-radius: 50px;
             padding-left:65px;
-            font-size:20px;/* sharper corners when scrolled */
+            font-size:30px;/* sharper corners when scrolled */
         }
 
         /* Text color when scrolled */
@@ -115,7 +117,7 @@
         .nav-alter.scrolled .navbar-nav .nav-link {
             color: #333;   /* dark gray for visibility */
             text-shadow: none;
-            font-size:20px;
+            font-size:22px;
         }
 
         /* Hover accent */
@@ -949,36 +951,36 @@ window.addEventListener("scroll", function() {
         <!-- Card 1 -->
         <div class="category-card1">
             <a href="../Category/Cake.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/031/958/727/small/a-cup-of-tea-and-a-teapot-on-a-wooden-table-ai-generated-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
-                <h5 class="category-card-title">Cakes</h5>
+                <h5 class="category-card-title">Tea/Coffee</h5>
             </a>
         </div>
 
         <!-- Card 2 -->
         <div class="category-card1">
             <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://www.shutterstock.com/image-photo/close-fresh-croissant-on-craft-600nw-2573578609.jpg"
+                <img src="https://thumbs.dreamstime.com/b/indian-starter-tandoori-chicken-tikka-indian-chicken-tikka-tandoori-snack-prepared-chicken-served-mint-chutney-158573913.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">Pastries</h5>
+                <h5 class="category-card-title">Starters</h5>
             </a>
         </div>
         <div class="category-card1">
             <a href="../Category/Burger.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFa3L5Wr39RXjD4kFyJABtC40WvXZbPLj0sg&s"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">Burger</h5>
+                <h5 class="category-card-title">Breakfast</h5>
             </a>
         </div>
         <div class="category-card1">
             <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg"
+                <img src="https://i0.wp.com/kristineskitchenblog.com/wp-content/uploads/2024/03/fruit-salad-2391-3.jpg?resize=1400%2C2100&ssl=1"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">Pizza</h5>
+                <h5 class="category-card-title">Salad</h5>
             </a>
         </div>
         <div class="category-card1">
@@ -989,28 +991,28 @@ window.addEventListener("scroll", function() {
                 <h5 class="category-card-title">Desserts</h5>
             </a>
         </div>
-        <div class="category-card1">
-            <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://static.vecteezy.com/system/resources/previews/035/251/734/non_2x/indian-famous-fresh-dry-fruits-sweets-photo.jpg"
-                     class="card-img-top category-image"
-                     alt="Chocolate Cake">
-                <h5 class="category-card-title">Sweets</h5>
-            </a>
-        </div>
-        <div class="category-card1">
-            <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://lemonsandzest.com/wp-content/uploads/2020/02/Small-Batch-Chocolate-Chip-Cookies-Recipe-3.10.jpg"
-                     class="card-img-top category-image"
-                     alt="Chocolate Cake">
-                <h5 class="category-card-title">Cookies</h5>
-            </a>
-        </div>
+        <!--<div class="category-card1">-->
+        <!--    <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">-->
+        <!--        <img src="https://static.vecteezy.com/system/resources/previews/035/251/734/non_2x/indian-famous-fresh-dry-fruits-sweets-photo.jpg"-->
+        <!--             class="card-img-top category-image"-->
+        <!--             alt="Chocolate Cake">-->
+        <!--        <h5 class="category-card-title">Pastries</h5>-->
+        <!--    </a>-->
+        <!--</div>-->
+        <!--<div class="category-card1">-->
+        <!--    <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">-->
+        <!--        <img src="https://lemonsandzest.com/wp-content/uploads/2020/02/Small-Batch-Chocolate-Chip-Cookies-Recipe-3.10.jpg"-->
+        <!--             class="card-img-top category-image"-->
+        <!--             alt="Chocolate Cake">-->
+        <!--        <h5 class="category-card-title">Sandwiches</h5>-->
+        <!--    </a>-->
+        <!--</div>-->
         <div class="category-card1">
             <a href="../Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg"
+                <img src="https://i.pinimg.com/736x/18/0b/4a/180b4a8cdc19f5ed90caee9882a0837d.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">IceCreams</h5>
+                <h5 class="category-card-title">Sandwiches</h5>
             </a>
         </div>
         <div class="category-card1">
@@ -1018,29 +1020,22 @@ window.addEventListener("scroll", function() {
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
-                <h5 class="category-card-title">Cakes</h5>
+                <h5 class="category-card-title">Cake</h5>
             </a>
         </div>
 
         <!-- Card 2 -->
         <div class="category-card1">
-            <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://www.shutterstock.com/image-photo/close-fresh-croissant-on-craft-600nw-2573578609.jpg"
+            <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://poonjiaji.com/cdn/shop/articles/Paneer-kathi-Roll-Featured-1.jpg?v=1694595382"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">Pastries</h5>
+                <h5 class="category-card-title">Rolls</h5>
             </a>
         </div>
+
         <div class="category-card1">
             <a href="../Category/Burger.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
-                     class="card-img-top category-image"
-                     alt="Chocolate Cake">
-                <h5 class="category-card-title">Burger</h5>
-            </a>
-        </div>
-        <div class="category-card1">
-            <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1048,32 +1043,41 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://wallpapercave.com/wp/wp3064856.jpg"
+            <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">Desserts</h5>
+                <h5 class="category-card-title">Burger</h5>
+            </a>
+        </div>
+        <div class="category-card1">
+            <a href="../Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Dinner</h5>
+            </a>
+        </div>
+        <div class="category-card1">
+            <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
+                <img src="https://images.unsplash.com/photo-1654074518423-750767f571a9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29ja3RhaWxzJTIwYW5kJTIwbW9ja3RhaWxzfGVufDB8fDB8fHww"
+                     class="card-img-top category-image"
+                     alt="Chocolate Cake">
+                <h5 class="category-card-title">Mocktails</h5>
             </a>
         </div>
         <div class="category-card1">
             <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://static.vecteezy.com/system/resources/previews/035/251/734/non_2x/indian-famous-fresh-dry-fruits-sweets-photo.jpg"
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz2td7otmRRE-6ezW6AcmQHunaqAFY09CwdA&s"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
-                <h5 class="category-card-title">Sweets</h5>
+                <h5 class="category-card-title">Drinks</h5>
             </a>
         </div>
-        <div class="category-card1">
-            <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://lemonsandzest.com/wp-content/uploads/2020/02/Small-Batch-Chocolate-Chip-Cookies-Recipe-3.10.jpg"
-                     class="card-img-top category-image"
-                     alt="Chocolate Cake">
-                <h5 class="category-card-title">Cookies</h5>
-            </a>
-        </div>
+
         <div class="category-card1">
             <a href="../Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg"
+                <img src="https://media.istockphoto.com/id/936205852/photo/chocolate-ice-cream-in-a-glass-cup.jpg?s=612x612&w=0&k=20&c=gcPTroDVPNSlCS45BkqEG-6-REnKFEzboBpuX8O3lY4="
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
                 <h5 class="category-card-title">IceCreams</h5>
