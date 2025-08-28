@@ -106,7 +106,7 @@
         .nav-alter.scrolled {
             background-color: white;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            padding: 8px 25px;              /* reduced padding = smaller height */
+            padding: 2px 10px;              /* reduced padding = smaller height */
             border-radius: 50px;
             padding-left:65px;
             font-size:30px;/* sharper corners when scrolled */
