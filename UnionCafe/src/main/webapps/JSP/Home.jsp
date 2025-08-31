@@ -851,13 +851,13 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Category" href="#">
+                                       data-bs-placement="bottom" title="Category" href="#category-section">
                                         <i class="fa-solid fa-layer-group fa-sm"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Booking" href="#">
+                                       data-bs-placement="bottom" title="Booking" href="#booking-section">
                                         <i class="fa-solid fa-utensils fa-sm"></i>
                                     </a>
                                 </li>
@@ -869,13 +869,13 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Favorite" href="Profile.jsp">
+                                       title="Favorite" href="favorite.jsp">
                                         <i class="fa-regular fa-heart fa-sm "></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Contact" href="Profile.jsp">
+                                       title="Contact" href="#contact-section">
                                         <i class="fa-regular fa-comment-dots fa-sm"></i>
                                     </a>
                                 </li>
@@ -933,17 +933,19 @@ window.addEventListener("scroll", function() {
             <h1 class="welcome">Welcome to UnionCafe`</h1>
             <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles
                 await you</p>
-            <button class="btn btn-primary me-2">Dine-In</button>
+            <button class="btn btn-primary me-2" onclick="window.location.href='DineIn.jsp'">Dine-In</button>
             <button class="btn btn-primary me-2">Take-Away</button>
         </div>
     </div>
 </div>
 
 
-<div class="heading">
+<div class="heading" id="category-section">
     <br/>
     <div class="category">
-        <h3>Category</h3>
+        <a href="Category.jsp" style="text-decoration: none; color: inherit;">
+            <h3>Category</h3>
+        </a>
     </div>
 
     <div class="category-row d-flex justify-content-center flex-wrap">
@@ -1089,11 +1091,12 @@ window.addEventListener("scroll", function() {
 
 </div>
 
-<div class="second-img mb-5 py-5 mb-2 mt-5 ">
-    <h1 class="coffee-text">Have a Coffee</h1>
+<div class="second-img mb-5 py-5 mb-2 mt-5 " >
+    <h1 class="coffee-text" >Have a Coffee</h1>
 </div>
-<h1 class="book" style="font-size:bold">Book A Table Now</h1>
-<div class="Booking">
+<h1 class="book" style="font-size:bold" id="booking-section">Book A Table Now</h1>
+
+<div class="Booking" >
     <div class="container my-5">
         <div class="row align-items-center">
             <!-- Form Column -->
@@ -1439,11 +1442,11 @@ window.addEventListener("scroll", function() {
 
 
 <section class="newsletter-section " aria-label="Newsletter subscription">
-    <div class="newsletter-content">
+    <div class="newsletter-content" >
         <h2 class="newsletter-heading">
             Subscribe to our <strong>Newsletter!</strong>
         </h2>
-        <p class="newsletter-subtext">
+        <p class="newsletter-subtext" >
             Get exclusive updates, special discounts, promotions, and free content delivered right to your inbox.
         </p>
         <form class="newsletter-form" action="#" method="post">
@@ -1454,12 +1457,12 @@ window.addEventListener("scroll", function() {
                     aria-label="Email address"
                     required
             />
-            <button type="submit">Subscribe</button>
+            <button type="submit" id="contact-section">Subscribe</button>
         </form>
     </div>
 </section>
 
-<section class="contact-section py-5">
+<section class="contact-section py-5" >
     <div class="container contact-container">
         <!-- Left: Contact Form -->
         <div class="contact-form">
