@@ -2,51 +2,47 @@ package com.xworkz.cafe.servlet;
 
 import com.xworkz.cafe.service.RegisterService;
 import com.xworkz.cafe.service.RegisterServiceImpli;
+import jakarta.mail.MessagingException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.Random;
 
-@WebServlet(urlPatterns = "/ForgotPassword")
+@WebServlet("/Home/User/ForgotPassword")
 public class ForgotPassServlet extends HttpServlet {
+    private RegisterService registerService = new RegisterServiceImpli();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("ForgotPassword Servlet");
+        String email = req.getParameter("email");
+        RequestDispatcher dispatcher;
+        HttpSession session = req.getSession();
 
-        String email=req.getParameter("email");
-        String password = req.getParameter("password");
-        String confirmConfirm = req.getParameter("confirmPassword");
-
-        System.out.println("Email: "+email + " " + "Password: " + password +" "+ "ConfirmPassword: "+confirmConfirm);
-        RegisterService registerService = new RegisterServiceImpli();
-        String result =   registerService.forgotPassword(email,password,confirmConfirm);
-        System.out.println(result+"result from forgot password");
-        if(!result.equals("validateForgotPassword")){
-            if(result.equals("emailError")){
-                String emailError = "Please enter valid email";
-                req.setAttribute("emailError",emailError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("ForgotPassword.jsp");
-                requestDispatcher.forward(req,resp);
+        if (email == null || email.trim().isEmpty()) {
+            req.setAttribute("emailError", "Please enter a valid email");
+            req.setAttribute("email", email);
+            dispatcher = req.getRequestDispatcher("/Home/User/ForgotPassword.jsp");
+        } else if (!registerService.isEmailRegistered(email)) {
+            req.setAttribute("emailError", "Email is not registered.");
+            req.setAttribute("email", email);
+            dispatcher = req.getRequestDispatcher("/Home/User/ForgotPassword.jsp");
+        } else {
+            int otpValue = new Random().nextInt(999999);
+            try {
+                registerService.sendOtpEmail(email, otpValue);
+                session.setAttribute("otp", otpValue);
+                session.setAttribute("email", email);
+                dispatcher = req.getRequestDispatcher("/Home/User/otpVerify.jsp");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                req.setAttribute("errorMessage", "Failed to send OTP email. Please try again later.");
+                req.setAttribute("email", email);
+                dispatcher = req.getRequestDispatcher("/Home/User/ForgotPassword.jsp");
             }
-            if(result.equals("passwordError")){
-                String passwordError = "password must contain (!@#$%^&*)";
-                req.setAttribute("passwordError",passwordError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("ForgotPassword.jsp");
-                requestDispatcher.forward(req,resp);
-            }
-            if(result.equals("confirmPasswordError")){
-                String confirmPasswordError = "Please enter same password";
-                req.setAttribute("confirmPasswordError",confirmPasswordError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("ForgotPassword.jsp");
-                requestDispatcher.forward(req,resp);
-            }
-        }else {
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("Login.jsp");
-            requestDispatcher.forward(req,resp);
         }
+        dispatcher.forward(req, resp);
     }
 }
