@@ -1,7 +1,7 @@
-<!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
-<!--<%@ page isELIgnored="false" %>-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -844,32 +844,32 @@
                             <ul class="navbar-nav d-flex flex-row gap-3">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Home" href="#">
+                                       data-bs-placement="bottom" title="Home" href="${pageContext.request.contextPath}/Home/User/Home.jsp">
                                         <i class="fa-regular fa-house fa-sm"></i>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Category" href="#category-section">
+                                       data-bs-placement="bottom" title="Category" href="${pageContext.request.contextPath}/Home/User/Category.jsp">
                                         <i class="fa-solid fa-layer-group fa-sm"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Booking" href="#booking-section">
+                                       data-bs-placement="bottom" title="Booking" href="${pageContext.request.contextPath}/Home/User/Booking.jsp">
                                         <i class="fa-solid fa-utensils fa-sm"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cart"
-                                       href="Cart.jsp">
+                                       href="${pageContext.request.contextPath}/Home/User/Cart.jsp">
                                         <i class="fa-solid fa-cart-shopping fa-xs"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Favorite" href="favorite.jsp">
+                                       title="Favorite" href="${pageContext.request.contextPath}/Home/User/favorite.jsp">
                                         <i class="fa-regular fa-heart fa-sm "></i>
                                     </a>
                                 </li>
@@ -880,11 +880,29 @@
                                     </a>
                                 </li>
 
+                                <!--<li class="nav-item">-->
+                                <!--    <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"-->
+                                <!--       title="Profile" href="${pageContext.request.contextPath}/Home/User/Login.jsp ">-->
+                                <!--        <i class="fa-regular fa-circle-user fa-sm"></i>-->
+                                <!--    </a>-->
+                                <!--</li>-->
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Profile" href="Profile.jsp ">
-                                        <i class="fa-regular fa-circle-user fa-sm"></i>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.userProfile}">
+                                            <!-- User logged in, show profile link -->
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Profile" href="${pageContext.request.contextPath}/Home/User/Profile.jsp">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <!-- User not logged in, show login link -->
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </li>
                             </ul>
                         </div>
@@ -923,7 +941,7 @@ window.addEventListener("scroll", function() {
     <div class="hero-body">
         <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">
             <div class="card-body text-center">
-                <img src="$%7BpageContext.request.contextPath%7D/Images/bg_1.jpg"
+                <img src="${pageContext.request.contextPath}/Home/User/Images/bg_1.jpg"
                      alt="Bakery Items" class="hero-banner" style="background-color: rgba(0,0,0,0.6)">
             </div>
         </div>
@@ -952,7 +970,7 @@ window.addEventListener("scroll", function() {
 
         <!-- Card 1 -->
         <div class="category-card1">
-            <a href="../Category/Cake.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Coffee.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/031/958/727/small/a-cup-of-tea-and-a-teapot-on-a-wooden-table-ai-generated-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
@@ -962,7 +980,7 @@ window.addEventListener("scroll", function() {
 
         <!-- Card 2 -->
         <div class="category-card1">
-            <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Starters.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://thumbs.dreamstime.com/b/indian-starter-tandoori-chicken-tikka-indian-chicken-tikka-tandoori-snack-prepared-chicken-served-mint-chutney-158573913.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -970,7 +988,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Burger.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Breakfast.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFa3L5Wr39RXjD4kFyJABtC40WvXZbPLj0sg&s"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -978,7 +996,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Salad.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://i0.wp.com/kristineskitchenblog.com/wp-content/uploads/2024/03/fruit-salad-2391-3.jpg?resize=1400%2C2100&ssl=1"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -986,31 +1004,15 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://wallpapercave.com/wp/wp3064856.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
                 <h5 class="category-card-title">Desserts</h5>
             </a>
         </div>
-        <!--<div class="category-card1">-->
-        <!--    <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">-->
-        <!--        <img src="https://static.vecteezy.com/system/resources/previews/035/251/734/non_2x/indian-famous-fresh-dry-fruits-sweets-photo.jpg"-->
-        <!--             class="card-img-top category-image"-->
-        <!--             alt="Chocolate Cake">-->
-        <!--        <h5 class="category-card-title">Pastries</h5>-->
-        <!--    </a>-->
-        <!--</div>-->
-        <!--<div class="category-card1">-->
-        <!--    <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">-->
-        <!--        <img src="https://lemonsandzest.com/wp-content/uploads/2020/02/Small-Batch-Chocolate-Chip-Cookies-Recipe-3.10.jpg"-->
-        <!--             class="card-img-top category-image"-->
-        <!--             alt="Chocolate Cake">-->
-        <!--        <h5 class="category-card-title">Sandwiches</h5>-->
-        <!--    </a>-->
-        <!--</div>-->
         <div class="category-card1">
-            <a href="../Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Sandwiches.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://i.pinimg.com/736x/18/0b/4a/180b4a8cdc19f5ed90caee9882a0837d.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1018,7 +1020,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Cake.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Cake.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
@@ -1028,7 +1030,7 @@ window.addEventListener("scroll", function() {
 
         <!-- Card 2 -->
         <div class="category-card1">
-            <a href="../Category/Cookie.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Rolls.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://poonjiaji.com/cdn/shop/articles/Paneer-kathi-Roll-Featured-1.jpg?v=1694595382"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1037,7 +1039,7 @@ window.addEventListener("scroll", function() {
         </div>
 
         <div class="category-card1">
-            <a href="../Category/Burger.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1045,7 +1047,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Burger.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1053,7 +1055,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Dinner.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1061,7 +1063,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Pastry.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Mocktails.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://images.unsplash.com/photo-1654074518423-750767f571a9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29ja3RhaWxzJTIwYW5kJTIwbW9ja3RhaWxzfGVufDB8fDB8fHww"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1069,7 +1071,7 @@ window.addEventListener("scroll", function() {
             </a>
         </div>
         <div class="category-card1">
-            <a href="../Category/Sweet.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/Drinks.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz2td7otmRRE-6ezW6AcmQHunaqAFY09CwdA&s"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1078,7 +1080,7 @@ window.addEventListener("scroll", function() {
         </div>
 
         <div class="category-card1">
-            <a href="../Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
+            <a href="Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://media.istockphoto.com/id/936205852/photo/chocolate-ice-cream-in-a-glass-cup.jpg?s=612x612&w=0&k=20&c=gcPTroDVPNSlCS45BkqEG-6-REnKFEzboBpuX8O3lY4="
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1155,7 +1157,7 @@ window.addEventListener("scroll", function() {
 
             <!-- Image Column -->
             <div class="table col-md-6 d-flex justify-content-center">
-                <img src="$%7BpageContext.request.contextPath%7D/Images/img.png" alt="Booking Table"
+                <img src="${pageContext.request.contextPath}/Home/User/Images/img.png" alt="Booking Table"
                      class="img-fluid rounded"/>
             </div>
         </div>
@@ -1402,7 +1404,7 @@ window.addEventListener("scroll", function() {
         <!-- Blog Card 1 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="$%7BpageContext.request.contextPath%7D/Images/image_3.jpg"
+                <img src="${pageContext.request.contextPath}/Home/User/Images/image_3.jpg"
                      class="card-img-top" alt="Blog 1">
                 <div class="card-body">
                     <small class="text-muted">August 3, 2025 | Admin</small>
@@ -1415,7 +1417,7 @@ window.addEventListener("scroll", function() {
         <!-- Blog Card 2 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="$%7BpageContext.request.contextPath%7D/Images/bg_4.jpg" class="card-img-top"
+                <img src="${pageContext.request.contextPath}/Home/User/Images/bg_4.jpg" class="card-img-top"
                      alt="Blog 2">
                 <div class="card-body">
                     <small class="text-muted">August 10, 2025 | Admin</small>
@@ -1428,7 +1430,7 @@ window.addEventListener("scroll", function() {
         <!-- Blog Card 3 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="$%7BpageContext.request.contextPath%7D/Images/image_2.jpg"
+                <img src="${pageContext.request.contextPath}/Home/User/Images/image_2.jpg"
                      class="card-img-top" alt="Blog 3">
                 <div class="card-body">
                     <small class="text-muted">August 17, 2025 | Admin</small>
@@ -1500,7 +1502,7 @@ window.addEventListener("scroll", function() {
     <div class="footer-container">
         <div class="footer-logo-contact">
             <!-- Replace with actual logo if available -->
-            <img src="$%7BpageContext.request.contextPath%7D/Images/UnionCafe`.png" alt="CEDIR Logo"/>
+            <img src="${pageContext.request.contextPath}/Home/User/Images/UnionCafe%60.png" alt="Company Logo"/>
             <p>Your trusted café, serving delicious treats and warm memories.</p>
             <div class="contact-info">
                 <div><i class="fas fa-envelope"></i> support@unioncafe.com</div>
@@ -1527,6 +1529,19 @@ window.addEventListener("scroll", function() {
         </div>
     </div>
     <p class="copyright">&copy; 2025 UnionCafe`. All rights reserved</p>
+    <div class="mt-1" style="position:relative;">
+        <div id="footer-clock" style="position:absolute; top:5px; right:20px; color:white; font-size:0.95em;"></div>
+        <script>
+            function updateTime() {
+                const now = new Date();
+                const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',second:'2-digit', hour12: true };
+                document.getElementById('footer-clock').textContent = now.toLocaleString('en-IN', options);
+            }
+            updateTime();
+            setInterval(updateTime, 1000);
+        </script>
+    </div>
+
 </footer>
 
 </body>
