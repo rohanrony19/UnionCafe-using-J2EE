@@ -3,6 +3,7 @@ package com.xworkz.cafe.service;
 import com.xworkz.cafe.dto.RegisterDTO;
 import com.xworkz.cafe.repository.RegisterRepository;
 import com.xworkz.cafe.repository.RegisterRepositoryImpli;
+import jakarta.mail.MessagingException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class RegisterServiceImpli implements RegisterService {
             if (!isMailExist(registerDTO.getEmail())) {
                 errors.add("mailExistError");
             }
-            if (!isInvalidNumber(registerDTO.getPhoneNumber())) {
+            if (!isInvalidNumber(Long.parseLong(registerDTO.getPhoneNumber()))) {
                 errors.add("NumberError");
             }
             if (isInvalidPassword(registerDTO.getPassword())) {
@@ -69,6 +70,11 @@ public class RegisterServiceImpli implements RegisterService {
             if (!errors.isEmpty()) {
                 return String.join(",", errors);  // e.g. "nameError,emailError,passwordError"
             }
+            String hashedPassword = PasswordUtil.hashPassword(registerDTO.getPassword());
+            registerDTO.setPassword(hashedPassword);
+
+            // Save DTO (with hashed password)
+            registerRepository.save(registerDTO);
             return "Correct validation";
         }
         return "emptyDto";
@@ -132,25 +138,25 @@ public class RegisterServiceImpli implements RegisterService {
         return "validData";
     }
 
-    @Override
-    public String forgotPassword(String email, String password, String confirmPassword) {
-        System.out.println("im in service");
-
-        if (!registerRepository.checkMail(email)) {
-            return "emailError";
-        }
-        if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
-            System.out.println("invalid character");
-            return "passwordError";
-        }
-        if (!password.equals(confirmPassword)) {
-            return "confirmPasswordError";
-        }
-
-        registerRepository.updatePassword(email, password);
-        System.out.println("valid");
-        return "validateForgotPassword";
-    }
+//    @Override
+//    public String forgotPassword(String email, String password, String confirmPassword) {
+//        System.out.println("im in service");
+//
+//        if (!registerRepository.checkMail(email)) {
+//            return "emailError";
+//        }
+//        if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+//            System.out.println("invalid character");
+//            return "passwordError";
+//        }
+//        if (!password.equals(confirmPassword)) {
+//            return "confirmPasswordError";
+//        }
+//
+//        registerRepository.updatePassword(email, password);
+//        System.out.println("valid");
+//        return "validateForgotPassword";
+//    }
 
     @Override
     public RegisterDTO displayDetailFromEmail(String Email) {
@@ -169,6 +175,31 @@ public class RegisterServiceImpli implements RegisterService {
 
         System.out.println("Email found → returning user details");
         return dto;
+    }
+
+    @Override
+    public boolean checkMail(String email) {
+
+        return registerRepository.checkMail(email);
+    }
+
+    @Override
+    public void sendOtpEmail(String email, int otp) throws MessagingException {
+        String subject = "Password Reset OTP";
+        String content = "Your OTP for password reset is: " + otp;
+        com.xworkz.cafe.util.EmailUtil.sendEmail(email, subject, content);
+    }
+
+    @Override
+    public boolean isEmailRegistered(String email) {
+        return registerRepository.checkMail(email);
+    }
+
+    @Override
+    public boolean updatePassword(String email, String newPassword) {
+        String hashedPassword = PasswordUtil.hashPassword(newPassword);
+        return registerRepository.updatePassword(email, hashedPassword);
+
     }
 
 }
