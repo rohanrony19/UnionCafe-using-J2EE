@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/Login")
+@WebServlet(urlPatterns = "/Home/User/Login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,20 +29,20 @@ public class LoginServlet extends HttpServlet {
             if (result.equals("emailError")) {
                 String emailError = "Email doesn't exist";
                 req.setAttribute("emailError", emailError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("Login.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Login.jsp");
                 requestDispatcher.forward(req, resp);
             }
             if (result.equals("PasswordError")) {
                 System.out.println("invalid passs");
                 String PasswordError = "Incorrect Password";
                 req.setAttribute("PasswordError", PasswordError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("Login.jsp");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Login.jsp");
                 requestDispatcher.forward(req, resp);
             }
         }else {
             HttpSession session=req.getSession();
             session.setAttribute("mail",email);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("Home.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Home.jsp");
             requestDispatcher.forward(req,resp);
         }
 
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("Login.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("Home/User/Login.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
