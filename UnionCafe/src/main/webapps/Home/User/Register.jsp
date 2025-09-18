@@ -6,12 +6,14 @@
 
     <!-- Bootstrap CSS (without integrity to avoid digest error) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="JS/index.js"></script>
     <style>
         body, html {
             height: 100%;
             margin: 0;
-            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230518/pngtree-various-bakery-items-are-displayed-on-a-wooden-table-image_2581267.jpg');
+            background-image: url('https://wallpaper.forfun.com/fetch/5f/5f8ae830d99b656d89656f6dcd071220.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -27,7 +29,7 @@
         }
 
         .card {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: white;
             width: 26rem;
             padding: 2rem;
             border-radius: 12px;
@@ -42,6 +44,20 @@
         .form-control.is-invalid {
             border-color: red;
         }
+
+        /* Adjust eye icon size and color */
+#togglePassword {
+  font-size: 18px;
+  color: #666;
+  user-select: none;
+}
+
+        #toggleConfirmPassword {
+  font-size: 18px;
+  color: #666;
+  user-select: none;
+}
+
     </style>
 </head>
 <body>
@@ -51,44 +67,77 @@
 
         <form id="registerForm" action="Register" method="post" novalidate>
             <div class="mb-3">
-                <label for="fullname" class="form-label">Full Name:<span style="color:red">*</span></label>
-                <input type="text" class="form-control" id="fullname" name="fullName">
+                <label for="fullName" class="form-label">Full Name:<span style="color:red">*</span></label>
+                <input type="text" oninput="validateName()" onclick="" class="form-control" id="fullName" name="fullName" required minlength="3" maxlength="50">
+                <span id="fullName-error" style="color:red"></span>
                 <span style="color:red">${nameError}</span>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address:<span style="color:red">*</span></label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" oninput="validateEmail()" class="form-control" id="email" name="email" required >
+                <span id="email-error" style="color:red"></span>
                 <span style="color:red">${emailError} </span>
                 <span style="color:red">${mailExistError} </span>
 
             </div>
             <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Phone Number:<span style="color:red">*</span></label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                <input type="text" onchange="validatePhoneNumber()" class="form-control" id="phoneNumber" name="phoneNumber">
+                <span id="number-error" style="color:red"></span>
                 <span style="color:red">${NumberError}</span>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 password-wrapper" style="position: relative;">
                 <label for="password" class="form-label">Password:<span style="color:red">*</span></label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" onchange="validatePassword()" required>
+                <span id="password-error" style="color:red"></span>
+                <i id="togglePassword" class="fa fa-eye" style="position: absolute; right: 15px; top: 44px; cursor: pointer; font-size: 14px;"></i>
                 <span style="color:red">${passwordError}</span>
             </div>
 
-            <div class="mb-3">
+
+
+            <div class="mb-3 password-wrapper" style="position: relative;">
                 <label for="confirmPassword" class="form-label">Confirm Password:<span style="color:red">*</span></label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                <input type="password" onchange="validateConfirmPassword()" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                <span id="confirmPassword-error" style="color:red"></span>
+                <i id="toggleConfirmPassword" class="fa fa-eye" style="position: absolute; right: 15px; top: 44px; cursor: pointer; font-size: 14px;"></i>
                 <span style="color:red">${confirmPasswordError}</span>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <button type="submit" onsubmit="return validateForm(event)" class="btn btn-primary w-100">Register</button>
         </form>
     </div>
 </div>
 
 <!-- Bootstrap JS (no integrity) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+const password = document.querySelector('#password');
+
+togglePassword.addEventListener('click', function () {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+
+    // Toggle eye / eye-slash icon
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
+
+    const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+const confirmPassword = document.querySelector('#confirmPassword');
+
+toggleConfirmPassword.addEventListener('click', function () {
+    const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmPassword.setAttribute('type', type);
+
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
+
+</script>
 <!-- JavaScript validation-->
 <!--<script>-->
 <!--    document.getElementById('registerForm').addEventListener('submit', function (event) {-->
