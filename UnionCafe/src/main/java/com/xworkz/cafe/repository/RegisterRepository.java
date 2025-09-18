@@ -6,6 +6,7 @@ public interface RegisterRepository {
     void save(RegisterDTO dto);
     boolean checkMail(String mail);
     String getPassword(String mail);
-    void updatePassword(String mail,String password);
+    boolean updatePassword(String mail, String password);
     RegisterDTO displayAllDataFromEmail(String email );
+    public void saveResetToken(String email, String token);
 }
