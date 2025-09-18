@@ -1,29 +1,34 @@
 package com.xworkz.cafe.repository;
 
 import com.xworkz.cafe.dto.RegisterDTO;
+import com.xworkz.cafe.entity.RegisterEntity;
 
-import java.sql.*;
+import javax.persistence.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public class RegisterRepositoryImpli implements RegisterRepository {
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Cafe");
     @Override
     public void save(RegisterDTO dto) {
-        System.out.println("hiii");
-        System.out.println(dto);
+        System.out.println("in save");
+        EntityManager em = emf.createEntityManager();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/crud";
-            String name = "root";
-            String password = "Katherine20*";
-            Connection connection = DriverManager.getConnection(url, name, password);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO bakery_details Values(?,?,?,?,?)");
-            preparedStatement.setInt(1, 0);
-            preparedStatement.setString(2, dto.getFullName());
-            preparedStatement.setLong(3, dto.getPhoneNumber());
-            preparedStatement.setString(4, dto.getEmail());
-            preparedStatement.setString(5, dto.getPassword());
-            preparedStatement.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            em.getTransaction().begin();
+            RegisterEntity entity = new RegisterEntity();
+            entity.setFullName(dto.getFullName());
+            entity.setPhoneNumber(dto.getPhoneNumber());
+            entity.setEmail(dto.getEmail());
+            entity.setPassword(dto.getPassword());
+            em.persist(entity);
+            em.getTransaction().commit();
+        } catch (Exception e){
+            if(em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }e.printStackTrace();
+        }finally {
+            em.close();
         }
 
     }
@@ -31,118 +36,104 @@ public class RegisterRepositoryImpli implements RegisterRepository {
     @Override
     public boolean checkMail(String mail) {
         System.out.println("mail in repo" + mail);
+        EntityManager em = emf.createEntityManager();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/crud";
-            String name = "root";
-            String password = "Katherine20*";
-            Connection connection = DriverManager.getConnection(url, name, password);
-            String sql = "select Email from bakery_details where Email=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, mail);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                return true;
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Query query = em.createNamedQuery("findByEmail");
+            query.setParameter("email", mail);
+            RegisterEntity entity = (RegisterEntity) query.getSingleResult(); // get entity
+            return entity != null;
+        }catch (NoResultException e){
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
         }
-
-        return false;
     }
 
     @Override
     public String getPassword(String mail) {
+        EntityManager em = emf.createEntityManager();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/crud";
-            String name = "root";
-            String password = "Katherine20*";
-
-            Connection connection = DriverManager.getConnection(url, name, password);
-
-            String sql = "select Password from bakery_details where Email=?";
-
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, mail);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                return resultSet.getString(1);
-            }
-
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Query query = em.createNamedQuery("findPasswordByEmail");
+            query.setParameter("email",mail);
+            List<String> result = query.getResultList();
+            return result.isEmpty()?"":result.get(0);
+        }finally {
+            em.close();
         }
-        return "";
     }
 
     @Override
-    public void updatePassword(String mail, String userPassword) {
-        System.out.println("im in repo");
-        System.out.println(mail);
+    public boolean updatePassword(String mail, String userPassword) {
+        EntityManager em = emf.createEntityManager();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/crud";
-            String name = "root";
-            String password = "Katherine20*";
-
-            Connection connection = DriverManager.getConnection(url, name, password);
-
-            String sql = "update  bakery_details set  password=? where Email=?";
-
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, userPassword);
-            preparedStatement.setString(2, mail);
-            preparedStatement.executeUpdate();
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            em.getTransaction().begin();
+            Query query = em.createNamedQuery("updatePasswordByEmail");
+            query.setParameter("email", mail);
+            query.setParameter("password", userPassword);
+            int result = query.executeUpdate();  // capture number of affected rows
+            em.getTransaction().commit();
+            return result > 0;  // return true if at least one row updated
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
         }
     }
+
 
     @Override
     public RegisterDTO displayAllDataFromEmail(String email) {
-        System.out.println("in display details");
+        EntityManager em = emf.createEntityManager();
         RegisterDTO dto = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/crud";
-            String username = "root";
-            String password = "Katherine20*";
+            Query query = em.createNamedQuery("RegisterEntity.findByEmail");
+            query.setParameter("email", email);
 
-            Connection connection = DriverManager.getConnection(url, username, password);
+            Object singleResult = query.getResultStream().findFirst().orElse(null);
 
-            String sql = "SELECT Name, Phone_Number, password FROM bakery_details WHERE Email = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, email); // only email needed for query
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
+            if (singleResult != null && singleResult instanceof RegisterEntity) {
+                RegisterEntity entity = (RegisterEntity) singleResult;
                 dto = new RegisterDTO();
-                dto.setFullName(resultSet.getString("Name"));
-                dto.setPhoneNumber(resultSet.getLong("Phone_Number"));
-                dto.setPassword(resultSet.getString("password"));
-                dto.setEmail(email); // email already known
+                dto.setFullName(entity.getFullName());
+                dto.setPhoneNumber(String.valueOf(entity.getPhoneNumber()));
+                dto.setPassword(entity.getPassword());
+                dto.setEmail(entity.getEmail());
             }
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+        } finally {
+            em.close();
         }
         return dto;
     }
+
+    @Override
+    public void saveResetToken(String email, String token) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            RegisterEntity user = em.createNamedQuery("findByEmail", RegisterEntity.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+            user.setResetPasswordToken(token);
+            user.setResetTokenExpiry(Instant.now().plus(1, ChronoUnit.HOURS));
+
+            em.merge(user);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+
 }
