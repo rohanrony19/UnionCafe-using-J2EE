@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/Register")
+@WebServlet(urlPatterns = "/Home/User/Register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("running doget in register servlet");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("Register.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Register.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
                 '}');
         RegisterDTO registerDTO = new RegisterDTO();
         registerDTO.setFullName(fullName);
-        registerDTO.setPhoneNumber(phoneNumber);
+        registerDTO.setPhoneNumber( String.valueOf(phoneNumber));
         registerDTO.setEmail(email);
         registerDTO.setPassword(password);
         registerDTO.setConfirmPassword(confirmPassword);
@@ -52,6 +52,14 @@ public class RegisterServlet extends HttpServlet {
         System.out.println("result from service;");
         System.out.println(result);
 
+//        if ("Correct validation".equals(result)) {
+//            HttpSession session = req.getSession();
+//            session.setAttribute("userProfile", registerDTO);
+//            resp.sendRedirect(req.getContextPath() + "/Profile");
+//        } else {
+//            req.setAttribute("error", result);
+//            req.getRequestDispatcher("register.jsp").forward(req, resp);
+//        }
 //        if(result!=null) {
 //            if (result.equals("nameError")) {
 //                String nameError = "name is not valid";
@@ -128,7 +136,7 @@ public class RegisterServlet extends HttpServlet {
 
             if (hasError) {
                 // forward only ONCE after all attributes are set
-                RequestDispatcher rd = req.getRequestDispatcher("Register.jsp");
+                RequestDispatcher rd = req.getRequestDispatcher("/Home/User/Register.jsp");
                 rd.forward(req, resp);
                 return; // stop execution
             } else {
@@ -136,7 +144,7 @@ public class RegisterServlet extends HttpServlet {
                 session.setAttribute("mail", email);
                 session.setAttribute("name", fullName);
 
-                RequestDispatcher rd = req.getRequestDispatcher("Home.jsp");
+                RequestDispatcher rd = req.getRequestDispatcher("/Home/User/Login.jsp");
                 rd.forward(req, resp);
             }
         }
