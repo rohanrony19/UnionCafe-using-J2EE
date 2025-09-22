@@ -68,5 +68,4 @@ public class RegisterEntity {
 
     @Column(name = "image_path")
     private String imagePath;
-    
 }
