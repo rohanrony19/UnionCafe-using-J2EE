@@ -1,6 +1,6 @@
 package com.xworkz.cafe.servlet;
 import com.xworkz.cafe.service.RegisterService;
-import com.xworkz.cafe.service.RegisterServiceImpli;
+import com.xworkz.cafe.service.RegisterServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,44 +13,61 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/Home/User/Login")
 public class LoginServlet extends HttpServlet {
+
+    RegisterService service = new RegisterServiceImpl();
+
+    // Show login page
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("running post method in Login");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.getRequestDispatcher("/Home/User/Login.jsp").forward(req, resp);
+    }
+
+    // Handle login form submission
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        System.out.println("Email: " + email +"/n"+ "Password: " + password);
 
-        RegisterService registerService=new RegisterServiceImpli();
+        boolean hasError = false;
 
-       String result = registerService.loginValidation(email,password);
-        System.out.println(result);
-        if(!result.equals("validData")) {
-
-            if (result.equals("emailError")) {
-                String emailError = "Email doesn't exist";
-                req.setAttribute("emailError", emailError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Login.jsp");
-                requestDispatcher.forward(req, resp);
-            }
-            if (result.equals("PasswordError")) {
-                System.out.println("invalid passs");
-                String PasswordError = "Incorrect Password";
-                req.setAttribute("PasswordError", PasswordError);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Login.jsp");
-                requestDispatcher.forward(req, resp);
-            }
-        }else {
-            HttpSession session=req.getSession();
-            session.setAttribute("mail",email);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/Home/User/Home.jsp");
-            requestDispatcher.forward(req,resp);
+        // Validation for empty email
+        if (email == null || email.trim().isEmpty()) {
+            req.setAttribute("emailError", "Email is required.");
+            hasError = true;
         }
 
+        // Validation for empty password
+        if (password == null || password.trim().isEmpty()) {
+            req.setAttribute("passwordError", "Password is required.");
+            hasError = true;
+        }
+
+        // If form validation fails, return to Login.jsp
+        if (hasError) {
+            req.getRequestDispatcher("/Home/User/Login.jsp").forward(req, resp);
+            return;
+        }
+
+        // If input filled, check login
+        boolean loginSuccess = service.login(email, password);
+
+        if (loginSuccess) {
+            // Create session
+            HttpSession session = req.getSession();
+            session.setAttribute("userEmail", email);
+
+            // Forward to home page
+            req.getRequestDispatcher("/Home/User/Home.jsp").forward(req, resp);
+        } else {
+            // Wrong credentials
+            req.setAttribute("error", "Invalid email or password");
+            req.getRequestDispatcher("/Home/User/Login.jsp").forward(req, resp);
+        }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("Home/User/Login.jsp");
-        requestDispatcher.forward(req, resp);
-    }
 }
+
+
