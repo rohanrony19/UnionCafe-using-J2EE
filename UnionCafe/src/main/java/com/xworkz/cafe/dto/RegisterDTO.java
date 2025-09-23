@@ -4,10 +4,9 @@ import lombok.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -36,5 +35,19 @@ public class RegisterDTO implements Serializable {
 
     @NotBlank(message = "Confirm Password is required")
     private String confirmPassword;
+
+    @NotNull
+    @Min(value = 15,message = "Age should be between 15 to 50")
+    @Max(value = 50,message = "Age should not be above 50")
+    private Integer age;
+
+    @NotNull(message = "Address should be empty")
+    private String address;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime lastLoginAt;
+
+    private String imagePath;
 
 }
