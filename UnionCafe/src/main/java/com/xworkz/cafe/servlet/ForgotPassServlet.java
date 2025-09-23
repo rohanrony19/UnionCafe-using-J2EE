@@ -1,7 +1,7 @@
 package com.xworkz.cafe.servlet;
 
 import com.xworkz.cafe.service.RegisterService;
-import com.xworkz.cafe.service.RegisterServiceImpli;
+import com.xworkz.cafe.service.RegisterServiceImpl;
 import jakarta.mail.MessagingException;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +13,8 @@ import java.util.Random;
 
 @WebServlet("/Home/User/ForgotPassword")
 public class ForgotPassServlet extends HttpServlet {
-    private RegisterService registerService = new RegisterServiceImpli();
+
+    RegisterService registerService= new RegisterServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
