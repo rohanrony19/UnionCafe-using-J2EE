@@ -11,29 +11,35 @@
     <script src="JS/index.js"></script>
     <style>
         body, html {
-            height: 100%;
             margin: 0;
+            padding:0;
+            min-height:100vh;
             background-image: url('https://wallpaper.forfun.com/fetch/5f/5f8ae830d99b656d89656f6dcd071220.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment:fixed;
         }
 
         .overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;  /* full viewport height */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;  /* add space top and bottom */
+    box-sizing: border-box;
+}
 
         .card {
             background-color: white;
             width: 26rem;
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             border-radius: 12px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-height: 90vh; /* prevent overflow */
+    overflow-y: auto;
         }
 
         .error-message {
@@ -70,27 +76,33 @@
                 <label for="fullName" class="form-label">Full Name:<span style="color:red">*</span></label>
                 <input type="text" oninput="validateName()" onclick="" class="form-control" id="fullName" name="fullName" required minlength="3" maxlength="50">
                 <span id="fullName-error" style="color:red"></span>
-                <span style="color:red">${nameError}</span>
+                <span style="color:red">${fullNameError}</span>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address:<span style="color:red">*</span></label>
-                <input type="email" oninput="validateEmail()" class="form-control" id="email" name="email" required >
+                <input type="email" oninput="validateEmail()" class="form-control" id="email" name="email" value="${param.email}" required >
                 <span id="email-error" style="color:red"></span>
-                <span style="color:red">${emailError} </span>
-                <span style="color:red">${mailExistError} </span>
+                <span style="color:red">${emailError}</span>
+                <span style="color:red">${mailExistError}</span>
 
             </div>
             <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Phone Number:<span style="color:red">*</span></label>
-                <input type="text" onchange="validatePhoneNumber()" class="form-control" id="phoneNumber" name="phoneNumber">
+                <input type="text" onchange="validatePhoneNumber()" class="form-control" id="phoneNumber" name="phoneNumber" maxlength="10" required>
                 <span id="number-error" style="color:red"></span>
-                <span style="color:red">${NumberError}</span>
+                <span style="color:red">${phoneError}</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Address <span style="color:red">*</span></label>
+                <textarea name="address" class="form-control" rows="3">${dto.address}</textarea>
+                <span id="addressError" class="text-danger"></span>
             </div>
 
             <div class="mb-3 password-wrapper" style="position: relative;">
                 <label for="password" class="form-label">Password:<span style="color:red">*</span></label>
-                <input type="password" class="form-control" id="password" name="password" onchange="validatePassword()" required>
+                <input type="password" class="form-control" id="password" name="password" oninput="validatePassword()" required>
                 <span id="password-error" style="color:red"></span>
                 <i id="togglePassword" class="fa fa-eye" style="position: absolute; right: 15px; top: 44px; cursor: pointer; font-size: 14px;"></i>
                 <span style="color:red">${passwordError}</span>
@@ -100,13 +112,16 @@
 
             <div class="mb-3 password-wrapper" style="position: relative;">
                 <label for="confirmPassword" class="form-label">Confirm Password:<span style="color:red">*</span></label>
-                <input type="password" onchange="validateConfirmPassword()" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                <input type="password" oninput="validateConfirmPassword()" class="form-control" id="confirmPassword" name="confirmPassword" required>
                 <span id="confirmPassword-error" style="color:red"></span>
                 <i id="toggleConfirmPassword" class="fa fa-eye" style="position: absolute; right: 15px; top: 44px; cursor: pointer; font-size: 14px;"></i>
                 <span style="color:red">${confirmPasswordError}</span>
             </div>
 
             <button type="submit" onsubmit="return validateForm(event)" class="btn btn-primary w-100">Register</button>
+            <span>Already have an account? <a href="Login.jsp">Login</a></span>
+            <p style="color:green">${success}</p>
+            <p style="color:red">${error}</p>
         </form>
     </div>
 </div>
