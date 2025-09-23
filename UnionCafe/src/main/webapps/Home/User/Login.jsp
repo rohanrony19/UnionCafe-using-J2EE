@@ -1,7 +1,7 @@
-<!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
-<!--<%@ page isELIgnored="false" %>-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -59,29 +59,38 @@
     <a href="Login.jsp" class="btn btn-outline-primary " id="userBtn">User</a>
     <a href="../Admin/AdminLogin.jsp" class="btn btn-outline-primary" id="adminBtn">Admin</a>
 </div>
+<!--<c:if test="${not empty error}">-->
+<!--    <p style="color:red; text-align:center;">${error}</p>-->
+<!--</c:if>-->
+
 <div class="overlay">
 <div class="card shadow p-4" style="width: 22rem;">
     <h4 class="text-center mb-3">User Login</h4>
-    <form action="Login" method="Post">
+    <form action="Login" method="post">
         <div class="mb-3">
             <label for="email" class="form-label">Email ID:<span style="color:red">*</span></label>
             <input type="email" onchange="validateEmail()" class="form-control" id="email" name="email" required>
-            <span id="email-error" style="color:red"></span>
-            <!--<span style="color:red">${emailError}</span>-->
+            <span id="email-error" style="color:red">
+            <span style="color:red">${emailError}</span>
+    </span>
         </div>
+
         <div class="mb-3 password-wrapper" style="position: relative;">
             <label for="password" class="form-label">Password:<span style="color:red">*</span></label>
-            <input type="password" onchange="validatePassword()" class="form-control" id="password" name="password" required>
-            <span id="password-error" style="color:red"></span>
+            <input type="password" oninput="validatePassword()" class="form-control" id="password" name="password" required>
+            <span id="password-error" style="color:red">
+            <span style="color:red">${passwordError}</span>
+    </span>
             <i id="togglePassword" class="fa fa-eye" style="position: absolute; right: 15px; top: 44px; cursor: pointer; font-size: 14px;"></i>
-            <!--<span style="color:red">${PasswordError}</span>-->
         </div>
+
         <div class="link">
         <span><a href="ForgotPassword.jsp">Forgot Password</a></span>
         <span><a href="Register.jsp">New User?</a></span>
         </div>
         <br/>
         <button type="submit" class="btn btn-primary w-100">Login</button>
+        <p style="color:red">${error}</p>
     </form>
 </div>
 </div>
