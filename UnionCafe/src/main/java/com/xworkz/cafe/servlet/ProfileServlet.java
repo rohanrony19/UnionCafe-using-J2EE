@@ -2,7 +2,7 @@ package com.xworkz.cafe.servlet;
 
 import com.xworkz.cafe.dto.RegisterDTO;
 import com.xworkz.cafe.service.RegisterService;
-import com.xworkz.cafe.service.RegisterServiceImpli;
+import com.xworkz.cafe.service.RegisterServiceImpl;
 //import sun.plugin.dom.core.Element;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/Profile")
 public class ProfileServlet extends HttpServlet {
-    private RegisterService registerService = new RegisterServiceImpli();
+    RegisterService registerService = new RegisterServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
