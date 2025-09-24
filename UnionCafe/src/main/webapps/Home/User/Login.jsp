@@ -33,24 +33,24 @@
           padding: 250px;
         }
         .link{
-        justify-content:space-between;
-        display:flex;
+            justify-content:space-between;
+            display:flex;
         align-item:center;
         }
         .login-switch {
-          position: absolute;
-          top: 30px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 10px;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
         }
 
         #togglePassword {
-          font-size: 18px;
+            font-size: 18px;
             color: #666;
-  user-select: none;
-}
+            user-select: none;
+        }
     </style>
 </head>
 
