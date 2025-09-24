@@ -37,7 +37,7 @@
         display:flex;
         align-item:center;
         }
-.login-switch {
+        .login-switch {
           position: absolute;
           top: 30px;
           left: 50%;
@@ -47,8 +47,8 @@
         }
 
         #togglePassword {
-  font-size: 18px;
-  color: #666;
+          font-size: 18px;
+            color: #666;
   user-select: none;
 }
     </style>
