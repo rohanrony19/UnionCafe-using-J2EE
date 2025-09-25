@@ -35,7 +35,7 @@
         .link{
             justify-content:space-between;
             display:flex;
-        align-item:center;
+            align-item:center;
         }
         .login-switch {
             position: absolute;
