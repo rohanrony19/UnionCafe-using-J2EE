@@ -20,6 +20,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
         req.getRequestDispatcher("/Home/User/Login.jsp").forward(req, resp);
     }
 
@@ -57,8 +62,8 @@ public class LoginServlet extends HttpServlet {
         if (loginSuccess) {
             // Create session
             HttpSession session = req.getSession();
-            session.setAttribute("userEmail", email);
-
+            session.setAttribute("mail", email);
+            session.setAttribute("userProfile", email);
             // Forward to home page
             req.getRequestDispatcher("/Home/User/Home.jsp").forward(req, resp);
         } else {
