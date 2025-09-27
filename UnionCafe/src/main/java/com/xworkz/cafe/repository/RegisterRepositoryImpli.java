@@ -121,6 +121,51 @@ public class RegisterRepositoryImpli implements RegisterRepository {
             if (em != null) em.close();
         }
     }
+
+    @Override
+    public boolean updateProfile(RegisterEntity entity) {
+        EntityManager em = null;
+        EntityTransaction tx = null;
+        try {
+            em = emf.createEntityManager();
+            tx = em.getTransaction();
+            tx.begin();
+
+            // Fetch existing user by email
+            TypedQuery<RegisterEntity> query = em.createNamedQuery("findByEmail", RegisterEntity.class);
+            query.setParameter("email", entity.getEmail());
+            RegisterEntity existingUser;
+            try {
+                existingUser = query.getSingleResult();
+            } catch (NoResultException e) {
+                existingUser = null;
+            }
+
+            if (existingUser != null) {
+                // Update fields
+                existingUser.setFullName(entity.getFullName());
+                existingUser.setPhoneNumber(entity.getPhoneNumber());
+                existingUser.setAge(entity.getAge());
+                existingUser.setAddress(entity.getAddress());
+                if (entity.getImagePath() != null) {
+                    existingUser.setImagePath(entity.getImagePath());
+                }
+
+                em.merge(existingUser);
+                tx.commit();
+                return true;
+            }
+
+            return false; // user not found
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) tx.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
 }
 
 

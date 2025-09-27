@@ -58,7 +58,7 @@ public class RegisterEntity {
     private Integer age;
 
     @Column(name = "login_attempt")
-    private int loginAttempt = 0;
+    private Integer loginAttempt = 0;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

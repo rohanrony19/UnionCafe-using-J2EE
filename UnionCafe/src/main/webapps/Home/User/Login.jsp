@@ -58,10 +58,18 @@
 <div class="login-switch">
     <a href="Login.jsp" class="btn btn-outline-primary " id="userBtn">User</a>
     <a href="../Admin/AdminLogin.jsp" class="btn btn-outline-primary" id="adminBtn">Admin</a>
+
 </div>
 <!--<c:if test="${not empty error}">-->
 <!--    <p style="color:red; text-align:center;">${error}</p>-->
 <!--</c:if>-->
+<div>
+    <c:if test="${not empty logoutMessage}">
+        <div class="alert alert-success text-center" style="position: absolute; top: 100px; left: 50%; transform: translateX(-50%); width: 300px; z-index: 10;">
+            ${logoutMessage}
+        </div>
+    </c:if>
+</div>
 
 <div class="overlay">
 <div class="card shadow p-4" style="width: 22rem;">

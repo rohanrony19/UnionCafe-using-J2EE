@@ -103,8 +103,28 @@ public class RegisterServiceImpl implements RegisterService{
         dto.setPhoneNumber(entity.getPhoneNumber());
         dto.setAddress(entity.getAddress());
         dto.setAge(entity.getAge());
+        dto.setImagePath(entity.getImagePath());
         return dto;
     }
+
+    @Override
+    public boolean updateProfile(RegisterDTO dto) {
+        if (dto == null || dto.getEmail() == null) {
+            return false;
+        }
+
+        // 🔹 Convert DTO → Entity
+        RegisterEntity entity = new RegisterEntity();
+        entity.setFullName(dto.getFullName());
+        entity.setEmail(dto.getEmail());
+        entity.setPhoneNumber(dto.getPhoneNumber());
+        entity.setAddress(dto.getAddress());
+        entity.setAge(dto.getAge());
+        entity.setImagePath(dto.getImagePath());
+
+        return repository.updateProfile(entity); // pass entity to repo
+    }
+
 
     @Override
     public boolean existsByEmail(String email) {

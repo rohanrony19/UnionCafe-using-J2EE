@@ -253,10 +253,17 @@
                          gap: 0.5rem;
                      }
                      /* category*/
-             .category-row {
+                          .category-row {
                  display: flex;
-                 gap: 30px;
+                 gap: 5px;
                  flex-wrap: wrap;
+                 justify-content:center;
+             }
+             .category-card1{
+                 background-color: null;
+                 flex: 0 0 calc(16.66% - 40px); /* 100% / 6 = 16.66% */
+                 max-width: calc(16.66% - 20px);
+                 text-align:center;
              }
              .category-card {
                  width: 200px;
@@ -276,10 +283,7 @@
                  font-size: 1.1rem;
                  color: #5a3e2b;
              }
-             .category-card1{
-                 background-color: null;
-                 text-align:center;
-             }
+
 
              .second-img {
                  width: 100%;
@@ -389,58 +393,6 @@
             </div>
         </nav>
     </div>
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl, {
-        trigger: 'hover'  // show tooltip only on hover
-            })
-        })
-
-    // Hide tooltip on click
-    tooltipTriggerList.forEach(function (el) {
-      el.addEventListener('click', function () {
-        var tooltip = bootstrap.Tooltip.getInstance(el)
-        if (tooltip) {
-          tooltip.hide()
-        }
-      })
-    });
-window.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".nav-alter");
-    if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
-
-         const favBtn = document.getElementById('favoriteBtn');
-
-favBtn.addEventListener('click', function() {
-this.classList.toggle('active');
-// TODO: Add logic here to add/remove from favorites section if needed
-});
-    </script>
-    <!--<div class="hero-body">-->
-    <!--    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">-->
-    <!--        <div class="card-body text-center">-->
-    <!--            <img src="$%7BpageContext.request.contextPath%7D/Images/bg_1.jpg"-->
-    <!--                 alt="Bakery Items" class="hero-banner" style="background-color: rgba(0,0,0,0.6)">-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--<div class="hero-overlay">-->
-    <!--    <div style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); color: white; text-align: center;">-->
-    <!--        <h1 class="welcome">Welcome to UnionCafe`</h1>-->
-    <!--        <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles-->
-    <!--            await you</p>-->
-    <!--        <button class="btn btn-primary me-2" onclick="window.location.href='DineIn.jsp'">Dine-In</button>-->
-    <!--        <button class="btn btn-primary me-2">Take-Away</button>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
     <div class="heading" id="category-section">
         <br/>
@@ -496,14 +448,7 @@ this.classList.toggle('active');
                     <h5 class="category-card-title">Desserts</h5>
                 </a>
             </div>
-            <div class="category-card1">
-                <a href="Sandwiches.jsp" style="text-decoration: none; color: inherit;">
-                    <img src="https://i.pinimg.com/736x/18/0b/4a/180b4a8cdc19f5ed90caee9882a0837d.jpg"
-                         class="card-img-top category-image"
-                         alt="Chocolate Cake">
-                    <h5 class="category-card-title">Sandwiches</h5>
-                </a>
-            </div>
+
             <div class="category-card1">
                 <a href="Cake.jsp" style="text-decoration: none; color: inherit;">
                     <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
@@ -513,15 +458,6 @@ this.classList.toggle('active');
                 </a>
             </div>
 
-            <!-- Card 2 -->
-            <div class="category-card1">
-                <a href="Rolls.jsp" style="text-decoration: none; color: inherit;">
-                    <img src="https://poonjiaji.com/cdn/shop/articles/Paneer-kathi-Roll-Featured-1.jpg?v=1694595382"
-                         class="card-img-top category-image"
-                         alt="Chocolate Cake">
-                    <h5 class="category-card-title">Rolls</h5>
-                </a>
-            </div>
 
             <div class="category-card1">
                 <a href="Pizza.jsp" style="text-decoration: none; color: inherit;">
@@ -590,390 +526,502 @@ this.classList.toggle('active');
 </div>
 
 <div class="display-area d-flex flex-wrap justify-content-center">
-    <!-- Product 1 -->
-    <div class="card h-50">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkPHN7XscGo6sNbVVKgNkV6sDO7LTYj6Nklw&s"
+
+    <!-- Cake 1: Black Forest Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://www.foodandwine.com/thmb/H9NS3GaVp-2XHt6wbPtrhwh0bws=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Black-Forest-Cake-FT-RECIPE0623-29bb291902e845bab17a7fc1d65e4ebb.jpg"
              class="card-img-top" alt="Black Forest Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Black Forest Cake">
+            <input type="hidden" name="price" value="10.00">
+            <input type="hidden" name="imageUrl" value="https://www.foodandwine.com/thmb/H9NS3GaVp-2XHt6wbPtrhwh0bws=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Black-Forest-Cake-FT-RECIPE0623-29bb291902e845bab17a7fc1d65e4ebb.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Black Forest</h5>
-            <p class="card-text">Chocolate creamy dark forest cake with fresh fruits</p>
+            <h5 class="card-title">Black Forest Cake</h5>
+            <p class="card-text">Chocolate creamy dark forest cake with fresh fruits.</p><br>
             <p class="card-text"><strong>Price: $10.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Black%20Forest&price=10.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Black Forest Cake">
+                <input type="hidden" name="price" value="10.00">
+                <input type="hidden" name="imageUrl" value="https://www.foodandwine.com/thmb/H9NS3GaVp-2XHt6wbPtrhwh0bws=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Black-Forest-Cake-FT-RECIPE0623-29bb291902e845bab17a7fc1d65e4ebb.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width: 30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 2 -->
-    <div class="card h-50">
-        <img src="https://thumbs.dreamstime.com/b/creamy-mascarpone-cheese-cake-strawberry-winter-berries-new-york-cheesecake-close-up-christmas-dessert-healthy-78995578.jpg"
-             class="card-img-top" alt="Cheesecake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 2: Chocolate Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg"
+             class="card-img-top" alt="Chocolate Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Chocolate Cake">
+            <input type="hidden" name="price" value="11.00">
+            <input type="hidden" name="imageUrl" value="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Cheese Cake</h5>
-            <p class="card-text">Creamy cheesecake with a graham cracker crust</p>
-            <p class="card-text"><strong>Price: $8.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Cheese%20Cake&price=8.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Chocolate Cake</h5>
+            <p class="card-text">Rich chocolate cake with chocolate ganache.</p><br>
+            <p class="card-text"><strong>Price: $11.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Chocolate Cake">
+                <input type="hidden" name="price" value="11.00">
+                <input type="hidden" name="imageUrl" value="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 3 -->
-    <div class="card h-50">
-        <img src="https://media.istockphoto.com/id/1466673520/photo/no-baked-blueberry-layered-cheesecake.jpg?s=612x612&w=0&k=20&c=_zzCUASpR6yBQYV-mR0AU1vcICHxlBonnj59f0qX3mk="
-             class="card-img-top" alt="Blueberry Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 3: Red Velvet Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1"
+             class="card-img-top" alt="Red Velvet Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Red Velvet Cake">
+            <input type="hidden" name="price" value="12.00">
+            <input type="hidden" name="imageUrl" value="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Blueberry Cake</h5>
-            <p class="card-text">Delicious blueberry cake with fruit crush</p>
-            <p class="card-text"><strong>Price: $9.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Blueberry%20Cake&price=9.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Red Velvet Cake</h5>
+            <p class="card-text">Delicious red velvet cake with cream cheese frosting.</p><br>
+            <p class="card-text"><strong>Price: $12.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Red Velvet Cake">
+                <input type="hidden" name="price" value="12.00">
+                <input type="hidden" name="imageUrl" value="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 4 -->
-    <div class="card h-50">
-        <img src="https://images.squarespace-cdn.com/content/v1/50b9b13ee4b012760adc9e24/1561532567665-ZS2OTEJW9HZ2SLM82IC0/carrot-cake.jpg"
-             class="card-img-top" alt="Carrot Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Carrot Cake</h5>
-            <p class="card-text">Moist carrot cake topped with cream cheese frosting</p>
-            <p class="card-text"><strong>Price: $10.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Carrot%20Cake&price=10.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 5 -->
-    <div class="card h-50">
+    <!-- Cake 4: Lemon Cake -->
+    <div class="card h-50 position-relative">
         <img src="https://thumbs.dreamstime.com/b/closeup-tangy-lemon-cake-round-creation-hd-k-wallpaper-stock-photographic-image-generated-ai-342636719.jpg"
              class="card-img-top" alt="Lemon Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Lemon Cake">
+            <input type="hidden" name="price" value="8.50">
+            <input type="hidden" name="imageUrl" value="https://thumbs.dreamstime.com/b/closeup-tangy-lemon-cake-round-creation-hd-k-wallpaper-stock-photographic-image-generated-ai-342636719.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
             <h5 class="card-title">Lemon Cake</h5>
-            <p class="card-text">Zesty lemon cake with a light lemon glaze</p>
+            <p class="card-text">Zesty lemon cake with a light lemon glaze.</p><br>
             <p class="card-text"><strong>Price: $8.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Lemon%20Cake&price=8.50" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Lemon Cake">
+                <input type="hidden" name="price" value="8.50">
+                <input type="hidden" name="imageUrl" value="https://thumbs.dreamstime.com/b/closeup-tangy-lemon-cake-round-creation-hd-k-wallpaper-stock-photographic-image-generated-ai-342636719.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 6 -->
-    <div class="card h-50">
+    <!-- Cake 5: Strawberry Cake -->
+    <div class="card h-50 position-relative">
         <img src="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg"
              class="card-img-top" alt="Strawberry Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Strawberry Cake">
+            <input type="hidden" name="price" value="9.50">
+            <input type="hidden" name="imageUrl" value="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
             <h5 class="card-title">Strawberry Cake</h5>
-            <p class="card-text">Delicious strawberry cake with fresh strawberries</p>
+            <p class="card-text">Delicious strawberry cake with fresh strawberries.</p><br>
             <p class="card-text"><strong>Price: $9.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Strawberry%20Cake&price=9.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Strawberry Cake">
+                <input type="hidden" name="price" value="9.50">
+                <input type="hidden" name="imageUrl" value="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 7 -->
-    <div class="card h-50">
+    <!-- Cake 6: Vanilla Cake -->
+    <div class="card h-50 position-relative">
         <img src="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg"
              class="card-img-top" alt="Vanilla Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Vanilla Cake">
+            <input type="hidden" name="price" value="7.00">
+            <input type="hidden" name="imageUrl" value="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
             <h5 class="card-title">Vanilla Cake</h5>
-            <p class="card-text">Classic vanilla cake with buttercream frosting</p>
+            <p class="card-text">Classic vanilla cake with buttercream frosting.</p><br><br>
             <p class="card-text"><strong>Price: $7.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Vanilla%20Cake&price=7.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Vanilla Cake">
+                <input type="hidden" name="price" value="7.00">
+                <input type="hidden" name="imageUrl" value="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 8 -->
-    <div class="card h-50">
-        <img src="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg"
-             class="card-img-top" alt="Chocolate Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 7: Pineapple Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://punjabbakers.com/wp-content/uploads/2024/05/PUNJABS-CAKE-n-BAKE-Pineapple-jelly-cake-2.jpg"
+             class="card-img-top" alt="Pineapple Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Pineapple Cake">
+            <input type="hidden" name="price" value="8.00">
+            <input type="hidden" name="imageUrl" value="https://punjabbakers.com/wp-content/uploads/2024/05/PUNJABS-CAKE-n-BAKE-Pineapple-jelly-cake-2.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Chocolate Cake</h5>
-            <p class="card-text">Rich chocolate cake with chocolate ganache</p>
-            <p class="card-text"><strong>Price: $11.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Chocolate%20Cake&price=11.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Pineapple Cake</h5>
+            <p class="card-text">Moist pineapple upside-down cake with caramelized topping.</p><br>
+            <p class="card-text"><strong>Price: $8.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Pineapple Cake">
+                <input type="hidden" name="price" value="8.00">
+                <input type="hidden" name="imageUrl" value="https://punjabbakers.com/wp-content/uploads/2024/05/PUNJABS-CAKE-n-BAKE-Pineapple-jelly-cake-2.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 9 -->
-    <div class="card h-50">
-        <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1"
-             class="card-img-top" alt="Red Velvet Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 8: Funfetti Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/funfetti_cake_49993_16x9.jpg.webp"
+             class="card-img-top" alt="Funfetti Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Funfetti Cake">
+            <input type="hidden" name="price" value="7.50">
+            <input type="hidden" name="imageUrl" value="https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/funfetti_cake_49993_16x9.jpg.webp">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Red Velvet Cake</h5>
-            <p class="card-text">Delicious red velvet cake with cream cheese frosting</p>
-            <p class="card-text"><strong>Price: $12.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Red%20Velvet%20Cake&price=12.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Funfetti Cake</h5>
+            <p class="card-text">Classic cake with colorful sprinkles baked inside and vanilla frosting.</p><br>
+            <p class="card-text"><strong>Price: $7.50</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Funfetti Cake">
+                <input type="hidden" name="price" value="7.50">
+                <input type="hidden" name="imageUrl" value="https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/funfetti_cake_49993_16x9.jpg.webp">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 10 -->
-    <div class="card h-50">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/028/140/156/small_2x/whole-coconut-cake-on-tplate-photo.jpg"
-             class="card-img-top" alt="Coconut Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 9: Mocha Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://www.piesandtacos.com/wp-content/uploads/2020/08/Dulce-de-Leche-Mocha-Cake-4-500x500.jpg"
+             class="card-img-top" alt="Mocha Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Mocha Cake">
+            <input type="hidden" name="price" value="9.50">
+            <input type="hidden" name="imageUrl" value="https://www.piesandtacos.com/wp-content/uploads/2020/08/Dulce-de-Leche-Mocha-Cake-4-500x500.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Coconut Cake</h5>
-            <p class="card-text">Moist coconut cake topped with coconut cream frosting</p>
-            <p class="card-text"><strong>Price: $10.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Coconut%20Cake&price=10.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card h-50">
-        <img src="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg"
-             class="card-img-top" alt="Strawberry Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Strawberry Cake</h5>
-            <p class="card-text">Delicious strawberry cake with fresh strawberries</p>
+            <h5 class="card-title">Mocha Cake</h5>
+            <p class="card-text">Chocolate and coffee flavored moist cake topped with mocha frosting.</p><br>
             <p class="card-text"><strong>Price: $9.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Strawberry%20Cake&price=9.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Mocha Cake">
+                <input type="hidden" name="price" value="9.50">
+                <input type="hidden" name="imageUrl" value="https://www.piesandtacos.com/wp-content/uploads/2020/08/Dulce-de-Leche-Mocha-Cake-4-500x500.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 7 -->
-    <div class="card h-50">
-        <img src="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg"
-             class="card-img-top" alt="Vanilla Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 10: German Chocolate Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg"
+             class="card-img-top" alt="German Chocolate Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="German Chocolate Cake">
+            <input type="hidden" name="price" value="11.00">
+            <input type="hidden" name="imageUrl" value="https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Vanilla Cake</h5>
-            <p class="card-text">Classic vanilla cake with buttercream frosting</p>
-            <p class="card-text"><strong>Price: $7.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Vanilla%20Cake&price=7.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 8 -->
-    <div class="card h-50">
-        <img src="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg"
-             class="card-img-top" alt="Chocolate Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Chocolate Cake</h5>
-            <p class="card-text">Rich chocolate cake with chocolate ganache</p>
+            <h5 class="card-title">German Chocolate Cake</h5>
+            <p class="card-text">Layered chocolate cake with sweet coconut-pecan frosting.</p>
             <p class="card-text"><strong>Price: $11.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Chocolate%20Cake&price=11.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="German Chocolate Cake">
+                <input type="hidden" name="price" value="11.00">
+                <input type="hidden" name="imageUrl" value="https://img.taste.com.au/qHHgZYey/taste/2022/03/german-chocolate-cake-177122-1.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 9 -->
-    <div class="card h-50">
-        <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1"
-             class="card-img-top" alt="Red Velvet Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 11: Funfetti Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTEMwWt-1QLmvaIbycfzwtUY7Y5wwe4zlm7Q&s"
+             class="card-img-top" alt="Pineapple Upside-Down Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Pineapple Upside-Down Cake">
+            <input type="hidden" name="price" value="8.00">
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTEMwWt-1QLmvaIbycfzwtUY7Y5wwe4zlm7Q&s">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Red Velvet Cake</h5>
-            <p class="card-text">Delicious red velvet cake with cream cheese frosting</p>
-            <p class="card-text"><strong>Price: $12.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Red%20Velvet%20Cake&price=12.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Pineapple Upside-Down Cake</h5>
+            <p class="card-text">Moist and fluffy cake topped with caramelized pineapple rings and cherries.</p>
+            <p class="card-text"><strong>Price: $8.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Pineapple Upside-Down Cake">
+                <input type="hidden" name="price" value="8.00">
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTEMwWt-1QLmvaIbycfzwtUY7Y5wwe4zlm7Q&s">
+                <input type="hidden" name="quantity" class="quantity-field" value="1">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 10 -->
-    <div class="card h-50">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/028/140/156/small_2x/whole-coconut-cake-on-tplate-photo.jpg"
-             class="card-img-top" alt="Coconut Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
+    <!-- Cake 15: Almond White Chocolate Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://www.thehungrybites.com/wp-content/uploads/2018/09/roasted-almond-white-chocolate-mousse-cake-nougat-torte-featured.jpg"
+             class="card-img-top" alt="Almond White Chocolate Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites">
             <i class="fa fa-heart"></i>
         </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Almond White Chocolate Cake">
+            <input type="hidden" name="price" value="9.00">
+            <input type="hidden" name="imageUrl" value="https://www.thehungrybites.com/wp-content/uploads/2018/09/roasted-almond-white-chocolate-mousse-cake-nougat-torte-featured.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Coconut Cake</h5>
-            <p class="card-text">Moist coconut cake topped with coconut cream frosting</p>
-            <p class="card-text"><strong>Price: $10.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Coconut%20Cake&price=10.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Almond White Chocolate Cake</h5>
+            <p class="card-text">Rich white chocolate cake with crunchy almond pieces and creamy frosting.</p>
+            <p class="card-text"><strong>Price: $9.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Almond White Chocolate Cake">
+                <input type="hidden" name="price" value="9.00">
+                <input type="hidden" name="imageUrl" value="https://www.thehungrybites.com/wp-content/uploads/2018/09/roasted-almond-white-chocolate-mousse-cake-nougat-torte-featured.jpg">
+                <input type="hidden" name="quantity" class="quantity-field" value="1">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
+
+    <!-- Cake 13: Carrot Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://images.squarespace-cdn.com/content/v1/50b9b13ee4b012760adc9e24/1561532567665-ZS2OTEJW9HZ2SLM82IC0/carrot-cake.jpg"
+             class="card-img-top" alt="Carrot Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
+            <i class="fa fa-heart"></i>
+        </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Carrot Cake">
+            <input type="hidden" name="price" value="10.00">
+            <input type="hidden" name="imageUrl" value="https://images.squarespace-cdn.com/content/v1/50b9b13ee4b012760adc9e24/1561532567665-ZS2OTEJW9HZ2SLM82IC0/carrot-cake.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Carrot Cake</h5>
+            <p class="card-text">Moist carrot cake topped with cream cheese frosting.</p><br><br>
+            <p class="card-text"><strong>Price: $10.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Carrot Cake">
+                <input type="hidden" name="price" value="10.00">
+                <input type="hidden" name="imageUrl" value="https://images.squarespace-cdn.com/content/v1/50b9b13ee4b012760adc9e24/1561532567665-ZS2OTEJW9HZ2SLM82IC0/carrot-cake.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cake 14: Vanilla Bean Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuAQKjsTFW9vYCLPqXkYI6WqwWSsoM2CA8vQ&s"
+             class="card-img-top" alt="Vanilla Bean Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
+            <i class="fa fa-heart"></i>
+        </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Vanilla Bean Cake">
+            <input type="hidden" name="price" value="8.50">
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuAQKjsTFW9vYCLPqXkYI6WqwWSsoM2CA8vQ&s">
+            <input type="hidden" name="action" value="add">
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Vanilla Bean Cake</h5>
+            <p class="card-text">Soft vanilla bean cake layered with sweet buttercream frosting.</p><br>
+            <p class="card-text"><strong>Price: $8.50</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Vanilla Bean Cake">
+                <input type="hidden" name="price" value="8.50">
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuAQKjsTFW9vYCLPqXkYI6WqwWSsoM2CA8vQ&s">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cake 15: Oreo Cake -->
+    <div class="card h-50 position-relative">
+        <img src="https://yummycake.in/wp-content/uploads/2022/06/IMG_8754-scaled-1.jpg"
+             class="card-img-top" alt="Oreo Cake">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
+                title="Add to Favorites">
+            <i class="fa fa-heart"></i>
+        </button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Oreo Cake">
+            <input type="hidden" name="price" value="9.00">
+            <input type="hidden" name="imageUrl" value="https://yummycake.in/wp-content/uploads/2022/06/IMG_8754-scaled-1.jpg">
+            <input type="hidden" name="action" value="add">
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Oreo Cake</h5>
+            <p class="card-text">Creamy chocolate cake layered with Oreo cookie pieces and frosting.</p><br>
+            <p class="card-text"><strong>Price: $9.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2 mt-auto">
+                <input type="hidden" name="productName" value="Oreo Cake">
+                <input type="hidden" name="price" value="9.00">
+                <input type="hidden" name="imageUrl" value="https://yummycake.in/wp-content/uploads/2022/06/IMG_8754-scaled-1.jpg">
+                <input type="hidden" name="quantity" value="1" class="quantity-field">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" value="1" style="width:30px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
 </div>
+
 <footer class="footer text-white text-center py-3 mt-2">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mb-0">
@@ -994,5 +1042,79 @@ this.classList.toggle('active');
     </nav>
     <p class="py-1 mt-4">&copy; 2025 UnionCafe. All rights reserved</p>
 </footer>
+<script>
+    // Initialize Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'hover' });
+    });
+
+    tooltipTriggerList.forEach(function (el) {
+        el.addEventListener('click', function () {
+            var tooltip = bootstrap.Tooltip.getInstance(el);
+            if (tooltip) tooltip.hide();
+        });
+    });
+
+    // Scroll effect for navbar
+    window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".nav-alter");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault(); // prevent form submit when clicking + or -
+
+                // find the form of this button
+                const form = btn.closest('form');
+
+                const displayInput = form.querySelector('.quantity-input');
+                const hiddenInput = form.querySelector('.quantity-field');
+
+                let value = parseInt(displayInput.value) || 1;
+
+                if (btn.dataset.action === 'increase') value++;
+                if (btn.dataset.action === 'decrease' && value > 1) value--;
+
+                displayInput.value = value;
+                hiddenInput.value = value;
+            });
+        });
+
+    document.querySelectorAll('.btn-favorite').forEach(btn => {
+    const icon = btn.querySelector('i');
+
+    // Initialize color based on active class
+    icon.style.color = btn.classList.contains('active') ? 'red' : 'gray';
+
+    btn.addEventListener('click', function() {
+        const form = btn.closest('.card').querySelector('.favorite-form');
+        const productName = form.querySelector('input[name="productName"]').value;
+        const price = form.querySelector('input[name="price"]').value;
+
+        if(btn.classList.contains('active')) {
+            // Unselect
+            btn.classList.remove('active');
+            icon.style.color = 'gray';
+            form.querySelector('input[name="action"]').value = 'remove';
+        } else {
+            // Select
+            btn.classList.add('active');
+            icon.style.color = 'red';
+            form.querySelector('input[name="action"]').value = 'add';
+        }
+
+        // Submit the hidden form to servlet to update session
+        form.submit();
+    });
+});
+
+</script>
+
 </body>
 </html>

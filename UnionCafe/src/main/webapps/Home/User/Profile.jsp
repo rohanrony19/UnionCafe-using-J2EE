@@ -1,5 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,106 +10,156 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
-            background-color: #f8f9fa; /* Light background for better contrast */
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            min-height: 100vh;
         }
-        .container {
-            margin-top: 50px;
-            background-color: white;
+        .profile-card {
+            background: white;
+            border-radius: 15px;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .welcome-message {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        .logout-btn {
-            background-color: #dc3545; /* Bootstrap danger color */
-            color: white;
-            float: right;
-        }
-        .logout-btn:hover {
-            background-color: #c82333; /* Darker red on hover */
-        }
-        .profile-pic-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            cursor: pointer; /* Change cursor to pointer */
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
         }
         .profile-pic {
             width: 150px;
             height: 150px;
             border-radius: 50%;
+            border: 4px solid #2575fc;
             object-fit: cover;
-            border: 2px solid #4a148c; /* Border color */
+            margin-bottom: 20px;
         }
-        input[type="file"] {
-            display: none; /* Hide the file input */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-header h2 {
+            font-weight: bold;
+            color: #333;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #444;
+        }
+        .btn-home {
+            background-color: white;
+            color: black;
+            font-weight: 800;
+        }
+        .btn-home:hover {
+            background-color: #6a11cb;
+        }
+        .btn-logout {
+            background-color: #dc3545;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-logout:hover {
+            background-color: #b52a37;
+        }
+        .btn-update {
+            background-color: #2575fc;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-update:hover {
+            background-color: #1b5edb;
+        }
+        .container-fluid{
+        margin-top:15px;
+        margin-left:15px;
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right, #6a11cb, #2575fc);">
     <div class="container-fluid">
-        <a class="navbar-brand" href="Home.jsp">CakeX</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="Home.jsp">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Profile.jsp">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Cart.jsp">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="favorite.jsp">Favorites</a>
-                </li>
-            </ul>
-            <form action="Logout" method="post" class="d-flex">
-                <button type="submit" class="btn logout-btn">Logout</button>
-            </form>
-        </div>
+        <a type="submit" class="btn btn-home w-5 me-2" href="${pageContext.request.contextPath}/Home/User/Home.jsp"><< Home</a>
     </div>
 </nav>
 
-<div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="welcome-message">User Profile</h1>
+<!-- Profile Section -->
+<div class="profile-card">
+    <div class="profile-header">
+        <h2>Profile</h2>
+        <!-- Success / Failure Message -->
+        <c:if test="${not empty message}">
+            <div style="color: ${messageType == 'success' ? 'green' : 'red'};
+                font-weight:bold;
+                text-align:center;
+                margin-bottom:10px;">
+                ${message}
+            </div>
+        </c:if>
+
+
+
+        <c:choose>
+            <c:when test="${not empty dto.imagePath}">
+                <img
+                        src="Profile?image=${dto.imagePath}&t=<%= System.currentTimeMillis() %>"
+                        class="profile-pic"
+                        alt="Profile">
+            </c:when>
+            <c:otherwise>
+                <img
+                        src="https://static.vecteezy.com/system/resources/previews/013/042/571/non_2x/default-avatar-profile-icon-social-media-user-photo-in-flat-style-vector.jpg"
+                        class="profile-pic"
+                        alt="Default Profile">
+            </c:otherwise>
+        </c:choose>
+
+        <h2>${dto.fullName}</h2>
     </div>
 
     <form action="Profile" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-            <label class="form-label">Profile Picture:</label>
-            <div class="profile-pic-container" onclick="document.getElementById('profilePictureInput').click();">
-                <img src="${profilePictureUrl}" alt="Profile Picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/150';">
-            </div>
-            <input type="file" id="profilePictureInput" name="profilePicture" accept="image/*" onchange="this.form.submit();">
-        </div>
-
-        <div class="mb-3">
             <label class="form-label">Name:</label>
-            <p class="form-control-plaintext">${fullName}</p>
+            <input type="text" class="form-control" name="fullName" value="${dto.fullName}" required>
         </div>
-
         <div class="mb-3">
             <label class="form-label">Phone Number:</label>
-            <p class="form-control-plaintext">${phoneNumber}</p>
+            <input type="text" class="form-control" name="phoneNumber" value="${dto.phoneNumber}" required>
         </div>
-
         <div class="mb-3">
-            <label class="form-label">Email Address:</label>
-            <p class="form-control-plaintext">${email}</p>
+            <label class="form-label">Email:</label>
+            <input type="email" class="form-control" name="email" value="${dto.email}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Age:</label>
+            <input type="number" class="form-control" name="age" value="${dto.age}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Address:</label>
+            <textarea class="form-control" name="address" required>${dto.address}</textarea>
+        </div>
+        <!-- Image Upload -->
+
+        <c:if test="${not empty dto.imagePath}">
+            <div class="mb-2">
+                <span class="text-success">Current File:</span>
+                <span class="fw-bold">${dto.imagePath}</span>
+                <!-- Show thumbnail -->
+                <!--<img src="${pageContext.request.contextPath}/download?imagePath=${dto.imagePath}"-->
+                <!--     alt="Profile image" style="height:50px;margin-left:10px;border-radius:5px;">-->
+            </div>
+        </c:if>
+
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02" name="profileImage">
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <div class="d-flex justify-content-between">
+            <form action="UpdateProfile" method="post" class="w-50">
+            <button type="submit" class="btn btn-update w-50 me-2">Update</button>
+                </form>
+            <form action="${pageContext.request.contextPath}/Logout" method="post" class="d-flex">
+                <button type="submit" class="btn btn-logout">Logout</button>
+            </form>
+        </div>
     </form>
 </div>
 
