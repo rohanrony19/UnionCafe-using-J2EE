@@ -10,6 +10,7 @@ public interface RegisterService {
     void sendOtpEmail(String email, int otpValue) throws MessagingException;
     boolean updatePassword(String email, String newPassword);
     RegisterDTO displayDetailFromEmail(String email);
+    boolean updateProfile(RegisterDTO dto);
     boolean existsByEmail(String email);
 //    String validate(RegisterDTO registerDTO);
 //    String loginValidation(String mail, String password);
