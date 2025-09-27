@@ -302,8 +302,15 @@
         /* category*/
         .category-row {
             display: flex;
-            gap: 30px;
+            gap: 5px;
             flex-wrap: wrap;
+            justify-content:center;
+        }
+        .category-card1{
+             background-color: null;
+             flex: 0 0 calc(16.66% - 40px); /* 100% / 6 = 16.66% */
+             max-width: calc(16.66% - 20px);
+             text-align:center;
         }
         .category-card {
             width: 200px;
@@ -323,10 +330,7 @@
             font-size: 1.1rem;
             color: #5a3e2b;
         }
-        .category-card1{
-            background-color: null;
-            text-align:center;
-        }
+
 
         /* Table Booking*/
         .book{
@@ -889,16 +893,14 @@
                                 <li class="nav-item">
                                     <c:choose>
                                         <c:when test="${not empty sessionScope.userProfile}">
-                                            <!-- User logged in, show profile link -->
                                             <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                               title="Profile" href="${pageContext.request.contextPath}/Home/User/Profile.jsp">
+                                               title="Profile" href="${pageContext.request.contextPath}/Profile">
                                                 <i class="fa-regular fa-circle-user fa-sm"></i>
                                             </a>
                                         </c:when>
                                         <c:otherwise>
-                                            <!-- User not logged in, show login link -->
                                             <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
+                                               title="Login" href="${pageContext.request.contextPath}/Login.jsp">
                                                 <i class="fa-regular fa-circle-user fa-sm"></i>
                                             </a>
                                         </c:otherwise>
@@ -1011,30 +1013,13 @@ window.addEventListener("scroll", function() {
                 <h5 class="category-card-title">Desserts</h5>
             </a>
         </div>
-        <div class="category-card1">
-            <a href="Category/Sandwiches.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://i.pinimg.com/736x/18/0b/4a/180b4a8cdc19f5ed90caee9882a0837d.jpg"
-                     class="card-img-top category-image"
-                     alt="Chocolate Cake">
-                <h5 class="category-card-title">Sandwiches</h5>
-            </a>
-        </div>
+
         <div class="category-card1">
             <a href="Category/Cake.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
                 <h5 class="category-card-title">Cake</h5>
-            </a>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="category-card1">
-            <a href="Category/Rolls.jsp" style="text-decoration: none; color: inherit;">
-                <img src="https://poonjiaji.com/cdn/shop/articles/Paneer-kathi-Roll-Featured-1.jpg?v=1694595382"
-                     class="card-img-top category-image"
-                     alt="Chocolate Cake">
-                <h5 class="category-card-title">Rolls</h5>
             </a>
         </div>
 

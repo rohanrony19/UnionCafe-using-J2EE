@@ -8,6 +8,7 @@ public interface RegisterRepository {
     boolean checkMail(String email);
     RegisterEntity findByEmail(String email);
     boolean updatePassword(String email,String password);
+    boolean updateProfile(RegisterEntity entity);
 //    RegisterEntity findByEmail(String email);
 //    boolean checkMail(String mail);
 //    String getPassword(String mail);

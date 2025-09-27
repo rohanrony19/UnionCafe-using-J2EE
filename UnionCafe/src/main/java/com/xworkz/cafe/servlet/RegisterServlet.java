@@ -54,7 +54,6 @@ public class RegisterServlet extends HttpServlet {
 
         if (registerService.existsByEmail(email)) {
             req.setAttribute("mailExistError", "Email already exists. Please use another.");
-            System.out.println("emmmmmmmmmmmm");
             hasError = true;
         }
         if (password == null || password.length() < 8) {
