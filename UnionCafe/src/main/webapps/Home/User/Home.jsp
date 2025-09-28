@@ -900,7 +900,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                               title="Login" href="${pageContext.request.contextPath}/Login.jsp">
+                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
                                                 <i class="fa-regular fa-circle-user fa-sm"></i>
                                             </a>
                                         </c:otherwise>
@@ -953,8 +953,17 @@ window.addEventListener("scroll", function() {
             <h1 class="welcome">Welcome to UnionCafe`</h1>
             <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles
                 await you</p>
-            <button class="btn btn-primary me-2" onclick="window.location.href='DineIn.jsp'">Dine-In</button>
-            <button class="btn btn-primary me-2">Take-Away</button>
+            <button type="button" class="btn btn-primary me-2"
+                    onclick="window.location.href='${pageContext.request.contextPath}/Home/User/Booking.jsp'">
+                Dine-In
+            </button>
+
+            <button type="button" class="btn btn-primary me-2"
+                    onclick="window.location.href='${pageContext.request.contextPath}/Home/User/Category.jsp'">
+                Take-Away
+            </button>
+
+
         </div>
     </div>
 </div>

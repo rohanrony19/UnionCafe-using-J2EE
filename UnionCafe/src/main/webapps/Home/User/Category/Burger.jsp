@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -253,10 +253,17 @@
                          gap: 0.5rem;
                      }
                      /* category*/
-             .category-row {
+                          .category-row {
                  display: flex;
-                 gap: 30px;
+                 gap: 5px;
                  flex-wrap: wrap;
+                 justify-content:center;
+             }
+             .category-card1{
+                 background-color: null;
+                 flex: 0 0 calc(16.66% - 40px); /* 100% / 6 = 16.66% */
+                 max-width: calc(16.66% - 20px);
+                 text-align:center;
              }
              .category-card {
                  width: 200px;
@@ -276,10 +283,7 @@
                  font-size: 1.1rem;
                  color: #5a3e2b;
              }
-             .category-card1{
-                 background-color: null;
-                 text-align:center;
-             }
+
 
              .second-img {
                  width: 100%;
@@ -377,10 +381,20 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Profile" href="../Login.jsp ">
-                                        <i class="fa-regular fa-circle-user fa-sm"></i>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.userProfile}">
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Profile" href="${pageContext.request.contextPath}/Profile">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </li>
                             </ul>
                         </div>
@@ -389,63 +403,11 @@
             </div>
         </nav>
     </div>
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl, {
-        trigger: 'hover'  // show tooltip only on hover
-            })
-        })
-
-    // Hide tooltip on click
-    tooltipTriggerList.forEach(function (el) {
-      el.addEventListener('click', function () {
-        var tooltip = bootstrap.Tooltip.getInstance(el)
-        if (tooltip) {
-          tooltip.hide()
-        }
-      })
-    });
-window.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".nav-alter");
-    if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
-
-         const favBtn = document.getElementById('favoriteBtn');
-
-favBtn.addEventListener('click', function() {
-this.classList.toggle('active');
-// TODO: Add logic here to add/remove from favorites section if needed
-});
-    </script>
-    <!--<div class="hero-body">-->
-    <!--    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">-->
-    <!--        <div class="card-body text-center">-->
-    <!--            <img src="$%7BpageContext.request.contextPath%7D/Images/bg_1.jpg"-->
-    <!--                 alt="Bakery Items" class="hero-banner" style="background-color: rgba(0,0,0,0.6)">-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--<div class="hero-overlay">-->
-    <!--    <div style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); color: white; text-align: center;">-->
-    <!--        <h1 class="welcome">Welcome to UnionCafe`</h1>-->
-    <!--        <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles-->
-    <!--            await you</p>-->
-    <!--        <button class="btn btn-primary me-2" onclick="window.location.href='DineIn.jsp'">Dine-In</button>-->
-    <!--        <button class="btn btn-primary me-2">Take-Away</button>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
     <div class="heading" id="category-section">
         <br/>
         <div class="category">
-            <a href="Breakfast.jsp" style="text-decoration: none; color: inherit;">
+            <a href="../Category.jsp" style="text-decoration: none; color: inherit;">
                 <h3>Category</h3>
             </a>
         </div>
@@ -496,14 +458,7 @@ this.classList.toggle('active');
                     <h5 class="category-card-title">Desserts</h5>
                 </a>
             </div>
-            <div class="category-card1">
-                <a href="Sandwiches.jsp" style="text-decoration: none; color: inherit;">
-                    <img src="https://i.pinimg.com/736x/18/0b/4a/180b4a8cdc19f5ed90caee9882a0837d.jpg"
-                         class="card-img-top category-image"
-                         alt="Chocolate Cake">
-                    <h5 class="category-card-title">Sandwiches</h5>
-                </a>
-            </div>
+
             <div class="category-card1">
                 <a href="Cake.jsp" style="text-decoration: none; color: inherit;">
                     <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
@@ -514,14 +469,6 @@ this.classList.toggle('active');
             </div>
 
             <!-- Card 2 -->
-            <div class="category-card1">
-                <a href="Rolls.jsp" style="text-decoration: none; color: inherit;">
-                    <img src="https://poonjiaji.com/cdn/shop/articles/Paneer-kathi-Roll-Featured-1.jpg?v=1694595382"
-                         class="card-img-top category-image"
-                         alt="Chocolate Cake">
-                    <h5 class="category-card-title">Rolls</h5>
-                </a>
-            </div>
 
             <div class="category-card1">
                 <a href="Pizza.jsp" style="text-decoration: none; color: inherit;">
@@ -565,7 +512,7 @@ this.classList.toggle('active');
             </div>
 
             <div class="category-card1">
-                <a href="IceCream.jsp   " style="text-decoration: none; color: inherit;">
+                <a href="IceCream.jsp" style="text-decoration: none; color: inherit;">
                     <img src="https://media.istockphoto.com/id/936205852/photo/chocolate-ice-cream-in-a-glass-cup.jpg?s=612x612&w=0&k=20&c=gcPTroDVPNSlCS45BkqEG-6-REnKFEzboBpuX8O3lY4="
                          class="card-img-top category-image"
                          alt="Chocolate Cake">
@@ -579,10 +526,6 @@ this.classList.toggle('active');
     </div>
 </div>
 <hr/>
-<!--<div class="second-img mb-5 py-5 mb-2 mt-5 " >-->
-<!--    <h1 class="coffee-text" >Have a Coffee</h1>-->
-<!--</div>-->
-<!--<h1 class="book" style="font-size:bold" id="booking-section">Book A Table Now</h1>-->
 <div>
     <div class="top-products mb-10">
         <h3 class="top">Burger</h3>
@@ -590,390 +533,460 @@ this.classList.toggle('active');
 </div>
 
 <div class="display-area d-flex flex-wrap justify-content-center">
-    <!-- Product 1 -->
-    <div class="card h-50">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkPHN7XscGo6sNbVVKgNkV6sDO7LTYj6Nklw&s"
-             class="card-img-top" alt="Black Forest Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+
+    <!-- Burger 1: Classic Cheeseburger -->
+    <div class="card h-50 position-relative">
+        <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/1:1/w_2560%2Cc_limit/Smashburger-recipe-120219.jpg" class="card-img-top" alt="Classic Cheeseburger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Classic Cheeseburger">
+            <input type="hidden" name="price" value="6.50">
+            <input type="hidden" name="imageUrl" value="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/1:1/w_2560%2Cc_limit/Smashburger-recipe-120219.jpg">
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Black Forest</h5>
-            <p class="card-text">Chocolate creamy dark forest cake with fresh fruits</p>
-            <p class="card-text"><strong>Price: $10.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Black%20Forest&price=10.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Classic Cheeseburger</h5>
+            <p class="card-text">Juicy beef patty with melted cheese, lettuce, tomato, and special sauce on a toasted bun.</p>
+            <br>
+            <p class="card-text"><strong>Price: $6.50</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Classic Cheeseburger" />
+                <input type="hidden" name="price" value="6.50" />
+                <input type="hidden" name="imageUrl" value="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/1:1/w_2560%2Cc_limit/Smashburger-recipe-120219.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 2 -->
-    <div class="card h-50">
-        <img src="https://thumbs.dreamstime.com/b/creamy-mascarpone-cheese-cake-strawberry-winter-berries-new-york-cheesecake-close-up-christmas-dessert-healthy-78995578.jpg"
-             class="card-img-top" alt="Cheesecake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+    <!-- Burger 2: Bacon Cheeseburger -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjPhsVWkPry0EaCDUPAYSaiTfUOHB5Vu-6A&s" class="card-img-top" alt="Bacon Cheeseburger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Bacon Cheeseburger" />
+            <input type="hidden" name="price" value="7.50" />
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjPhsVWkPry0EaCDUPAYSaiTfUOHB5Vu-6A&s" />
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Cheese Cake</h5>
-            <p class="card-text">Creamy cheesecake with a graham cracker crust</p>
+            <h5 class="card-title">Bacon Cheeseburger</h5>
+            <p class="card-text">Juicy beef patty with crispy bacon, melted cheddar, lettuce, tomato, and mayo.</p><br>
+            <br>
+            <p class="card-text"><strong>Price: $7.50</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Bacon Cheeseburger" />
+                <input type="hidden" name="price" value="7.50" />
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjPhsVWkPry0EaCDUPAYSaiTfUOHB5Vu-6A&s" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 3: Veggie Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://www.noracooks.com/wp-content/uploads/2023/04/veggie-burgers-1-2.jpg" class="card-img-top" alt="Veggie Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Veggie Burger" />
+            <input type="hidden" name="price" value="6.00" />
+            <input type="hidden" name="imageUrl" value="https://www.noracooks.com/wp-content/uploads/2023/04/veggie-burgers-1-2.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Veggie Burger</h5>
+            <p class="card-text">Grilled vegetable patty with lettuce, tomato, avocado and chipotle mayo.</p><br>
+            <br>
+            <p class="card-text"><strong>Price: $6.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Veggie Burger" />
+                <input type="hidden" name="price" value="6.00" />
+                <input type="hidden" name="imageUrl" value="https://www.noracooks.com/wp-content/uploads/2023/04/veggie-burgers-1-2.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 4: BBQ Chicken Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49Qk7Q5s5q0VkvVZf1E7_w3fDzPfBD_aD-g&s" class="card-img-top" alt="BBQ Chicken Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="BBQ Chicken Burger" />
+            <input type="hidden" name="price" value="7.75" />
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49Qk7Q5s5q0VkvVZf1E7_w3fDzPfBD_aD-g&s" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">BBQ Chicken Burger</h5>
+            <p class="card-text">Grilled chicken breast topped with smoky BBQ sauce, lettuce, and cheddar cheese.</p>
+            <br>
+            <p class="card-text"><strong>Price: $7.75</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="BBQ Chicken Burger" />
+                <input type="hidden" name="price" value="7.75" />
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49Qk7Q5s5q0VkvVZf1E7_w3fDzPfBD_aD-g&s" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 5: Swiss Mushroom Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF0hozi1S8LaAzHga583oA64FaZbWRCj7x3w&s" class="card-img-top" alt="Swiss Mushroom Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Swiss Mushroom Burger" />
+            <input type="hidden" name="price" value="8.00" />
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF0hozi1S8LaAzHga583oA64FaZbWRCj7x3w&s" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Swiss Mushroom Burger</h5>
+            <p class="card-text">Beef patty topped with mushrooms, Swiss cheese, lettuce and Dijon mustard.</p>
+            <br>
             <p class="card-text"><strong>Price: $8.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Cheese%20Cake&price=8.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Swiss Mushroom Burger" />
+                <input type="hidden" name="price" value="8.00" />
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF0hozi1S8LaAzHga583oA64FaZbWRCj7x3w&s" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 3 -->
-    <div class="card h-50">
-        <img src="https://media.istockphoto.com/id/1466673520/photo/no-baked-blueberry-layered-cheesecake.jpg?s=612x612&w=0&k=20&c=_zzCUASpR6yBQYV-mR0AU1vcICHxlBonnj59f0qX3mk="
-             class="card-img-top" alt="Blueberry Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+    <!-- Burger 6: Spicy Jalapeno Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://wickedkitchen.com/wp-content/uploads/2022/05/Wicked-jalapeno-burger.jpeg" class="card-img-top" alt="Spicy Jalapeno Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Spicy Jalapeno Burger" />
+            <input type="hidden" name="price" value="7.75" />
+            <input type="hidden" name="imageUrl" value="https://wickedkitchen.com/wp-content/uploads/2022/05/Wicked-jalapeno-burger.jpeg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Blueberry Cake</h5>
-            <p class="card-text">Delicious blueberry cake with fruit crush</p>
-            <p class="card-text"><strong>Price: $9.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Blueberry%20Cake&price=9.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Spicy Jalapeno Burger</h5>
+            <p class="card-text">Crispy chicken patty with fresh jalapenos, pepper jack cheese, lettuce, and spicy mayo.</p>
+            <br>
+            <p class="card-text"><strong>Price: $7.75</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Spicy Jalapeno Burger" />
+                <input type="hidden" name="price" value="7.75" />
+                <input type="hidden" name="imageUrl" value="https://wickedkitchen.com/wp-content/uploads/2022/05/Wicked-jalapeno-burger.jpeg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 4 -->
-    <div class="card h-50">
-        <img src="https://images.squarespace-cdn.com/content/v1/50b9b13ee4b012760adc9e24/1561532567665-ZS2OTEJW9HZ2SLM82IC0/carrot-cake.jpg"
-             class="card-img-top" alt="Carrot Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+    <!-- Burger 7: Hawaiian Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1E10RKRjTdZGVwK-Tllm-FY4BrDdz2rN78w&s" class="card-img-top" alt="Hawaiian Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Hawaiian Burger" />
+            <input type="hidden" name="price" value="8.50" />
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1E10RKRjTdZGVwK-Tllm-FY4BrDdz2rN78w&s" />
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Carrot Cake</h5>
-            <p class="card-text">Moist carrot cake topped with cream cheese frosting</p>
-            <p class="card-text"><strong>Price: $10.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Carrot%20Cake&price=10.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 5 -->
-    <div class="card h-50">
-        <img src="https://thumbs.dreamstime.com/b/closeup-tangy-lemon-cake-round-creation-hd-k-wallpaper-stock-photographic-image-generated-ai-342636719.jpg"
-             class="card-img-top" alt="Lemon Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Lemon Cake</h5>
-            <p class="card-text">Zesty lemon cake with a light lemon glaze</p>
+            <h5 class="card-title">Hawaiian Burger</h5>
+            <p class="card-text">Juicy patty with grilled pineapple, honey-glazed ham, lettuce, and mayo on a bun.</p>
+            <br>
             <p class="card-text"><strong>Price: $8.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Lemon%20Cake&price=8.50" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Hawaiian Burger" />
+                <input type="hidden" name="price" value="8.50" />
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1E10RKRjTdZGVwK-Tllm-FY4BrDdz2rN78w&s" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 6 -->
-    <div class="card h-50">
-        <img src="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg"
-             class="card-img-top" alt="Strawberry Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+    <!-- Burger 8: Mushroom Swiss Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://insanelygoodrecipes.com/wp-content/uploads/2024/08/Mushroom-Swiss-Burger-Featured-500x375.jpg" class="card-img-top" alt="Mushroom Swiss Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Mushroom Swiss Burger" />
+            <input type="hidden" name="price" value="8.00" />
+            <input type="hidden" name="imageUrl" value="https://insanelygoodrecipes.com/wp-content/uploads/2024/08/Mushroom-Swiss-Burger-Featured-500x375.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Strawberry Cake</h5>
-            <p class="card-text">Delicious strawberry cake with fresh strawberries</p>
+            <h5 class="card-title">Mushroom Swiss Burger</h5>
+            <p class="card-text">Juicy beef patty with sautéed mushrooms, Swiss cheese, lettuce, and mustard.</p>
+            <br>
+            <p class="card-text"><strong>Price: $8.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Mushroom Swiss Burger" />
+                <input type="hidden" name="price" value="8.00" />
+                <input type="hidden" name="imageUrl" value="https://insanelygoodrecipes.com/wp-content/uploads/2024/08/Mushroom-Swiss-Burger-Featured-500x375.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 9: Spicy Chicken Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://www.kitchensanctuary.com/wp-content/uploads/2024/09/Buffalo-Chicken-Burger-square-FS-2.jpg" class="card-img-top" alt="Spicy Chicken Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Spicy Chicken Burger" />
+            <input type="hidden" name="price" value="8.00" />
+            <input type="hidden" name="imageUrl" value="https://www.kitchensanctuary.com/wp-content/uploads/2024/09/Buffalo-Chicken-Burger-square-FS-2.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Spicy Chicken Burger</h5>
+            <p class="card-text">Crispy spicy chicken patty with lettuce, tomato, and chipotle mayo on a bun.</p><br>
+            <br>
+            <p class="card-text"><strong>Price: $8.00</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Spicy Chicken Burger" />
+                <input type="hidden" name="price" value="8.00" />
+                <input type="hidden" name="imageUrl" value="https://www.kitchensanctuary.com/wp-content/uploads/2024/09/Buffalo-Chicken-Burger-square-FS-2.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 10: Turkey Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/turkey-burger-lead-6481ed42f294e.jpg" class="card-img-top" alt="Turkey Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Turkey Burger" />
+            <input type="hidden" name="price" value="7.25" />
+            <input type="hidden" name="imageUrl" value="https://hips.hearstapps.com/hmg-prod/images/turkey-burger-lead-6481ed42f294e.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Turkey Burger</h5>
+            <p class="card-text">Lean ground turkey patty with lettuce, tomato, and a tangy sauce on a whole wheat bun.</p>
+            <br>
+            <p class="card-text"><strong>Price: $7.25</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Turkey Burger" />
+                <input type="hidden" name="price" value="7.25" />
+                <input type="hidden" name="imageUrl" value="https://hips.hearstapps.com/hmg-prod/images/turkey-burger-lead-6481ed42f294e.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 11: BBQ Pulled Pork Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://supervalue.imgix.net/assets/15-Minute-Pulled-Pork-Burgers.jpg" class="card-img-top" alt="BBQ Pulled Pork Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="BBQ Pulled Pork Burger" />
+            <input type="hidden" name="price" value="8.75" />
+            <input type="hidden" name="imageUrl" value="https://supervalue.imgix.net/assets/15-Minute-Pulled-Pork-Burgers.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">BBQ Pulled Pork Burger</h5>
+            <p class="card-text">Slow-cooked pulled pork with tangy BBQ sauce, coleslaw, and pickles.</p>
+            <br>
+            <p class="card-text"><strong>Price: $8.75</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="BBQ Pulled Pork Burger" />
+                <input type="hidden" name="price" value="8.75" />
+                <input type="hidden" name="imageUrl" value="https://supervalue.imgix.net/assets/15-Minute-Pulled-Pork-Burgers.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 12: Sliders Trio -->
+    <div class="card h-50 position-relative">
+        <img src="https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/ypkgntcd/21b78d2f-d811-45c0-99dd-285e3d73a8de.jpg" class="card-img-top" alt="Sliders Trio">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Sliders Trio" />
+            <input type="hidden" name="price" value="9.50" />
+            <input type="hidden" name="imageUrl" value="https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/ypkgntcd/21b78d2f-d811-45c0-99dd-285e3d73a8de.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Sliders Trio</h5>
+            <p class="card-text">Three mini burgers featuring classic, bacon, and BBQ pulled pork patties.</p><br>
+            <br>
             <p class="card-text"><strong>Price: $9.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Strawberry%20Cake&price=9.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Sliders Trio" />
+                <input type="hidden" name="price" value="9.50" />
+                <input type="hidden" name="imageUrl" value="https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/ypkgntcd/21b78d2f-d811-45c0-99dd-285e3d73a8de.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 7 -->
-    <div class="card h-50">
-        <img src="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg"
-             class="card-img-top" alt="Vanilla Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+    <!-- Burger 13: Blue Cheese Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://www.oliviascuisine.com/wp-content/uploads/2015/05/blue-cheese-burger-foodgawker.jpg" class="card-img-top" alt="Blue Cheese Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Blue Cheese Burger" />
+            <input type="hidden" name="price" value="8.75" />
+            <input type="hidden" name="imageUrl" value="https://www.oliviascuisine.com/wp-content/uploads/2015/05/blue-cheese-burger-foodgawker.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Vanilla Cake</h5>
-            <p class="card-text">Classic vanilla cake with buttercream frosting</p>
+            <h5 class="card-title">Blue Cheese Burger</h5>
+            <p class="card-text">Beef burger with creamy blue cheese, caramelized onions, and arugula on a toasted bun.</p>
+            <br>
+            <p class="card-text"><strong>Price: $8.75</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Blue Cheese Burger" />
+                <input type="hidden" name="price" value="8.75" />
+                <input type="hidden" name="imageUrl" value="https://www.oliviascuisine.com/wp-content/uploads/2015/05/blue-cheese-burger-foodgawker.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
+                </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Burger 14: Vegan Black Bean Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4dZYhz7CJWXPRNcMNWFvjtNfdzuamvAiV9A&s" class="card-img-top" alt="Vegan Black Bean Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Vegan Black Bean Burger" />
+            <input type="hidden" name="price" value="7.00" />
+            <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4dZYhz7CJWXPRNcMNWFvjtNfdzuamvAiV9A&s" />
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Vegan Black Bean Burger</h5>
+            <p class="card-text">Spiced black bean patty with lettuce, tomato, avocado and vegan mayo on a vegan bun.</p>
+            <br>
             <p class="card-text"><strong>Price: $7.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Vanilla%20Cake&price=7.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Vegan Black Bean Burger" />
+                <input type="hidden" name="price" value="7.00" />
+                <input type="hidden" name="imageUrl" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4dZYhz7CJWXPRNcMNWFvjtNfdzuamvAiV9A&s" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 8 -->
-    <div class="card h-50">
-        <img src="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg"
-             class="card-img-top" alt="Chocolate Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
+    <!-- Burger 15: Turkey Avocado Burger -->
+    <div class="card h-50 position-relative">
+        <img src="https://leaf.nutrisystem.com/wp-content/uploads/2024/05/healthy-turkey-burger.jpg" class="card-img-top" alt="Turkey Avocado Burger">
+        <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1" title="Add to Favorites"><i class="fa fa-heart"></i></button>
+        <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
+            <input type="hidden" name="productName" value="Turkey Avocado Burger" />
+            <input type="hidden" name="price" value="7.75" />
+            <input type="hidden" name="imageUrl" value="https://leaf.nutrisystem.com/wp-content/uploads/2024/05/healthy-turkey-burger.jpg" />
+            <input type="hidden" name="action" value="add" />
+        </form>
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Chocolate Cake</h5>
-            <p class="card-text">Rich chocolate cake with chocolate ganache</p>
-            <p class="card-text"><strong>Price: $11.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Chocolate%20Cake&price=11.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
+            <h5 class="card-title">Turkey Avocado Burger</h5>
+            <p class="card-text">Ground turkey patty with sliced avocado, lettuce, tomato and multigrain bun.</p>
+            <br>
+            <p class="card-text"><strong>Price: $7.75</strong></p>
+            <form action="${pageContext.request.contextPath}/AddToCart" method="post" class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productName" value="Turkey Avocado Burger" />
+                <input type="hidden" name="price" value="7.75" />
+                <input type="hidden" name="imageUrl" value="https://leaf.nutrisystem.com/wp-content/uploads/2024/05/healthy-turkey-burger.jpg" />
+                <input type="hidden" name="quantity" class="quantity-field" value="1" />
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="decrease">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1 quantity-input" style="width:30px;" value="1" />
+                    <button type="button" class="btn btn-sm btn-outline-secondary quantity-btn" data-action="increase">+</button>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-cart text-white">Add to Cart</button>
+            </form>
         </div>
     </div>
 
-    <!-- Product 9 -->
-    <div class="card h-50">
-        <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1"
-             class="card-img-top" alt="Red Velvet Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Red Velvet Cake</h5>
-            <p class="card-text">Delicious red velvet cake with cream cheese frosting</p>
-            <p class="card-text"><strong>Price: $12.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Red%20Velvet%20Cake&price=12.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 10 -->
-    <div class="card h-50">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/028/140/156/small_2x/whole-coconut-cake-on-tplate-photo.jpg"
-             class="card-img-top" alt="Coconut Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Coconut Cake</h5>
-            <p class="card-text">Moist coconut cake topped with coconut cream frosting</p>
-            <p class="card-text"><strong>Price: $10.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Coconut%20Cake&price=10.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card h-50">
-        <img src="https://www.rainbownourishments.com/wp-content/uploads/2022/02/vegan-strawberry-cake-1-1.jpg"
-             class="card-img-top" alt="Strawberry Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Strawberry Cake</h5>
-            <p class="card-text">Delicious strawberry cake with fresh strawberries</p>
-            <p class="card-text"><strong>Price: $9.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Strawberry%20Cake&price=9.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 7 -->
-    <div class="card h-50">
-        <img src="https://bakerbynature.com/wp-content/uploads/2022/04/Golden-Vanilla-Cake-with-Vanilla-Frosting0-19-500x500.jpg"
-             class="card-img-top" alt="Vanilla Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Vanilla Cake</h5>
-            <p class="card-text">Classic vanilla cake with buttercream frosting</p>
-            <p class="card-text"><strong>Price: $7.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Vanilla%20Cake&price=7.00" class="btn btn-cart text-white">Add to Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 8 -->
-    <div class="card h-50">
-        <img src="https://t4.ftcdn.net/jpg/03/08/40/43/360_F_308404381_LqyMIXDPOR6Ut1TqE2cJRQdxomGsQegc.jpg"
-             class="card-img-top" alt="Chocolate Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Chocolate Cake</h5>
-            <p class="card-text">Rich chocolate cake with chocolate ganache</p>
-            <p class="card-text"><strong>Price: $11.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Chocolate%20Cake&price=11.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 9 -->
-    <div class="card h-50">
-        <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/11/Red-Velvet-Cake-H2.jpg?ssl=1"
-             class="card-img-top" alt="Red Velvet Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Red Velvet Cake</h5>
-            <p class="card-text">Delicious red velvet cake with cream cheese frosting</p>
-            <p class="card-text"><strong>Price: $12.00</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Red%20Velvet%20Cake&price=12.00" class="btn btn-cart text-white">Add to
-                        Cart</a>
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product 10 -->
-    <div class="card h-50">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/028/140/156/small_2x/whole-coconut-cake-on-tplate-photo.jpg"
-             class="card-img-top" alt="Coconut Cake">
-        <button id="favoriteBtn" type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
-                title="Add to Favorites" style="background-color: transparent; border: none; font-size: 1.2rem; color: gray;">
-            <i class="fa fa-heart"></i>
-        </button>
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Coconut Cake</h5>
-            <p class="card-text">Moist coconut cake topped with coconut cream frosting</p>
-            <p class="card-text"><strong>Price: $10.50</strong></p>
-            <div class="mt-auto">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="cart.jsp?product=Coconut%20Cake&price=10.50" class="btn btn-cart text-white">Add to
-                        Cart</a>
-
-                    <div class="quantity-control">
-                        <button class="btn btn-sm btn-outline-secondary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-sm btn-outline-secondary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+
 <footer class="footer text-white text-center py-3 mt-2">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mb-0">
@@ -994,5 +1007,82 @@ this.classList.toggle('active');
     </nav>
     <p class="py-1 mt-4">&copy; 2025 UnionCafe. All rights reserved</p>
 </footer>
+<script>
+    // Initialize Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'hover' });
+    });
+
+    tooltipTriggerList.forEach(function (el) {
+        el.addEventListener('click', function () {
+            var tooltip = bootstrap.Tooltip.getInstance(el);
+            if (tooltip) tooltip.hide();
+        });
+    });
+
+    // Scroll effect for navbar
+    window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".nav-alter");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault(); // prevent form submit when clicking + or -
+
+                // find the form of this button
+                const form = btn.closest('form');
+
+                const displayInput = form.querySelector('.quantity-input');
+                const hiddenInput = form.querySelector('.quantity-field');
+
+                let value = parseInt(displayInput.value) || 1;
+
+                if (btn.dataset.action === 'increase') value++;
+                if (btn.dataset.action === 'decrease' && value > 1) value--;
+
+                displayInput.value = value;
+                hiddenInput.value = value;
+            });
+        });
+
+    document.querySelectorAll('.btn-favorite').forEach(btn => {
+    const icon = btn.querySelector('i');
+
+    // Initialize color based on active class
+    icon.style.color = btn.classList.contains('active') ? 'red' : 'gray';
+
+    btn.addEventListener('click', function() {
+        const form = btn.closest('.card').querySelector('.favorite-form');
+        const productName = form.querySelector('input[name="productName"]').value;
+        const price = form.querySelector('input[name="price"]').value;
+
+        if(btn.classList.contains('active')) {
+            // Unselect
+            btn.classList.remove('active');
+            icon.style.color = 'gray';
+            form.querySelector('input[name="action"]').value = 'remove';
+        } else {
+            // Select
+            btn.classList.add('active');
+            icon.style.color = 'red';
+            form.querySelector('input[name="action"]').value = 'add';
+        }
+
+        // Submit the hidden form to servlet to update session
+        form.submit();
+    });
+});
+
+</script>
+
+
+
+
 </body>
 </html>
