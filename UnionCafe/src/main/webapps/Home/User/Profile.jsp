@@ -69,6 +69,11 @@
         margin-top:15px;
         margin-left:15px;
         }
+        .container-fluid-order{
+        margin-top:15px;
+        margin-right:20px;
+
+        }
     </style>
 </head>
 <body>
@@ -77,6 +82,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right, #6a11cb, #2575fc);">
     <div class="container-fluid">
         <a type="submit" class="btn btn-home w-5 me-2" href="${pageContext.request.contextPath}/Home/User/Home.jsp"><< Home</a>
+    </div>
+    <div class="container-fluid-order">
+        <a class="btn btn-warning text-dark w-5 me-2" href="${pageContext.request.contextPath}/Home/User/Order.jsp">My Orders</a>
     </div>
 </nav>
 

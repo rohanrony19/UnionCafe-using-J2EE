@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -381,10 +381,20 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Profile" href="../Login.jsp ">
-                                        <i class="fa-regular fa-circle-user fa-sm"></i>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.userProfile}">
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Profile" href="${pageContext.request.contextPath}/Profile">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </li>
                             </ul>
                         </div>
@@ -521,7 +531,7 @@
 <!--<h1 class="book" style="font-size:bold" id="booking-section">Book A Table Now</h1>-->
 <div>
     <div class="top-products mb-10">
-        <h3 class="top">Top Products</h3>
+        <h3 class="top">Cakes</h3>
     </div>
 </div>
 
