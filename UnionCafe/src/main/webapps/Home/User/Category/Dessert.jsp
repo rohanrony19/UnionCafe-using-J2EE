@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -381,10 +381,20 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Profile" href="../Login.jsp ">
-                                        <i class="fa-regular fa-circle-user fa-sm"></i>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.userProfile}">
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Profile" href="${pageContext.request.contextPath}/Profile">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
+                                                <i class="fa-regular fa-circle-user fa-sm"></i>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </li>
                             </ul>
                         </div>
@@ -393,58 +403,6 @@
             </div>
         </nav>
     </div>
-    <!--    <script>-->
-    <!--        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))-->
-    <!--        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {-->
-    <!--            return new bootstrap.Tooltip(tooltipTriggerEl, {-->
-    <!--        trigger: 'hover'  // show tooltip only on hover-->
-    <!--            })-->
-    <!--        })-->
-
-    <!--    // Hide tooltip on click-->
-    <!--    tooltipTriggerList.forEach(function (el) {-->
-    <!--      el.addEventListener('click', function () {-->
-    <!--        var tooltip = bootstrap.Tooltip.getInstance(el)-->
-    <!--        if (tooltip) {-->
-    <!--          tooltip.hide()-->
-    <!--        }-->
-    <!--      })-->
-    <!--    });-->
-    <!--window.addEventListener("scroll", function() {-->
-    <!--    const navbar = document.querySelector(".nav-alter");-->
-    <!--    if (window.scrollY > 50) {-->
-    <!--        navbar.classList.add("scrolled");-->
-    <!--    } else {-->
-    <!--        navbar.classList.remove("scrolled");-->
-    <!--    }-->
-    <!--});-->
-
-    <!--         const favBtn = document.getElementById('favoriteBtn');-->
-
-    <!--favBtn.addEventListener('click', function() {-->
-    <!--this.classList.toggle('active');-->
-    <!--// TODO: Add logic here to add/remove from favorites section if needed-->
-    <!--});-->
-    <!--    </script>-->
-    <!--<div class="hero-body">-->
-    <!--    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">-->
-    <!--        <div class="card-body text-center">-->
-    <!--            <img src="$%7BpageContext.request.contextPath%7D/Images/bg_1.jpg"-->
-    <!--                 alt="Bakery Items" class="hero-banner" style="background-color: rgba(0,0,0,0.6)">-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--<div class="hero-overlay">-->
-    <!--    <div style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); color: white; text-align: center;">-->
-    <!--        <h1 class="welcome">Welcome to UnionCafe`</h1>-->
-    <!--        <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles-->
-    <!--            await you</p>-->
-    <!--        <button class="btn btn-primary me-2" onclick="window.location.href='DineIn.jsp'">Dine-In</button>-->
-    <!--        <button class="btn btn-primary me-2">Take-Away</button>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
     <div class="heading" id="category-section">
         <br/>
