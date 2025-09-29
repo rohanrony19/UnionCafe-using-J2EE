@@ -84,7 +84,11 @@
         <a type="submit" class="btn btn-home w-5 me-2" href="${pageContext.request.contextPath}/Home/User/Home.jsp"><< Home</a>
     </div>
     <div class="container-fluid-order">
-        <a class="btn btn-warning text-dark w-5 me-2" href="${pageContext.request.contextPath}/Home/User/Order.jsp">My Orders</a>
+        <a class="btn btn-warning text-dark w-5 me-2" href="${pageContext.request.contextPath}/Home/User/MyBooking">My Bookings</a>
+    </div>
+
+    <div class="container-fluid-order">
+        <a class="btn btn-warning text-dark w-5 me-2" href="${pageContext.request.contextPath}/Home/User/MyOrders">My Orders</a>
     </div>
 </nav>
 
@@ -149,9 +153,6 @@
             <div class="mb-2">
                 <span class="text-success">Current File:</span>
                 <span class="fw-bold">${dto.imagePath}</span>
-                <!-- Show thumbnail -->
-                <!--<img src="${pageContext.request.contextPath}/download?imagePath=${dto.imagePath}"-->
-                <!--     alt="Profile image" style="height:50px;margin-left:10px;border-radius:5px;">-->
             </div>
         </c:if>
 
