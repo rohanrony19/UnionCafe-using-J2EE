@@ -113,7 +113,7 @@
 
                 <div class="mt-4 d-flex justify-content-between">
                     <a href="javascript:history.back()" class="btn btn-secondary" style="background-color:#0081a3">⬅ Continue Shopping</a>
-                    <a href="${pageContext.request.contextPath}/Home/User/checkout.jsp" class="btn btn-cart text-white">✅ Proceed to Checkout</a>
+                    <a href="${pageContext.request.contextPath}/Home/User/Payment.jsp" class="btn btn-cart text-white">✅ Proceed to Checkout</a>
                 </div>
 
             </c:when>

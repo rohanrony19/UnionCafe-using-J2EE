@@ -36,6 +36,7 @@ public class CartServlet extends HttpServlet {
         for (CartItem item : cart) {
             if (item.getProductName().equals(productName)) {
                 item.setQuantity(item.getQuantity() + quantity);
+                item.setImageUrl(imageUrl);
                 found = true;
                 break;
             }

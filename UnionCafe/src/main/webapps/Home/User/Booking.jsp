@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,56 +71,72 @@
 
 
 <h1 class="book" style="font-size:bold" id="booking-section">Book A Table Now</h1>
+<c:if test="${not empty success}">
+    <div style="color:green">${success}</div>
+</c:if>
+<c:if test="${not empty error}">
+    <div style="color:red">${error}</div>
+</c:if>
 <div class="Booking d-flex justify-content-center align-items-center " >
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center ">
             <!-- Form Column -->
             <div class="col-md-6">
-                <form action="#" method="post" class="p-4 border rounded form-blur-box"
+                <form action="${pageContext.request.contextPath}/Home/User/Booking" method="post" class="p-4 border rounded form-blur-box"
                       style=" color: white;">
                     <h3 class="mb-4 text-center" style="color: white;">Book Your Table</h3>
 
+                    <!-- Name -->
                     <div class="row mb-3 align-items-center">
                         <label for="name" class="col-sm-4 col-form-label">Name:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required value="${param.name}">
+                            <span class="text-danger">${nameError}</span>
+                            <span class="text-danger" id="name-error-js"></span>
                         </div>
                     </div>
-
+                    <!-- Email -->
                     <div class="row mb-3 align-items-center">
                         <label for="email" class="col-sm-4 col-form-label">Email *</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                                   required>
+                            <input type="email" readonly class="form-control" id="email" name="email" placeholder="Email" required value="${sessionScope.userProfile}">
+                            <span class="text-danger">${emailError}</span>
                         </div>
                     </div>
-
+                    <!-- Phone -->
                     <div class="row mb-3 align-items-center">
                         <label for="phone" class="col-sm-4 col-form-label">Phone Number *</label>
                         <div class="col-sm-8">
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required>
+                            <input type="tel" class="form-control" id="phone" name="phoneNumber" placeholder="Phone" minlength="10" maxlength="10" required value="${param.phoneNumber}">
+                            <span class="text-danger">${phoneError}</span>
+                            <span class="text-danger" id="phone-error-js"></span>
                         </div>
                     </div>
-
+                    <!-- Check-in Date -->
                     <div class="row mb-3 align-items-center">
                         <label for="checkin-date" class="col-sm-4 col-form-label">Check-in Date *</label>
                         <div class="col-sm-8">
-                            <input type="date" class="form-control" id="checkin-date" name="checkin" required>
+                            <input type="date" class="form-control" id="checkin-date" name="checkInDate" required value="${param.checkInDate}" min="<%= java.time.LocalDate.now() %>">
+                            <span class="text-danger">${dateError}</span>
+                            <span class="text-danger" id="date-error-js"></span>
                         </div>
                     </div>
-
+                    <!-- Check-in Time -->
                     <div class="row mb-3 align-items-center">
                         <label for="time" class="col-sm-4 col-form-label">Time *</label>
                         <div class="col-sm-8">
-                            <input type="time" class="form-control" id="time" name="time" value="04:00:00" required>
+                            <input type="time" class="form-control" id="time" name="checkInTime" value="10:00" min="10:00" max="22:00" required>
+                            <span class="text-danger">${timeError}</span>
+                            <span class="text-danger" id="time-error-js"></span>
                         </div>
                     </div>
-
+                    <!-- Number of Guests -->
                     <div class="row mb-3 align-items-center">
                         <label for="guests" class="col-sm-4 col-form-label">Number of Guests *</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="guests" name="guests" min="1" max="20"
-                                   value="1" required>
+                            <input type="number" class="form-control" id="guests" name="numberOfGuests" min="1" max="20" value="1" required >
+                            <span class="text-danger">${guestsError}</span>
+                            <span class="text-danger" id="guests-error-js"></span>
                         </div>
                     </div>
 
@@ -131,7 +147,56 @@
 
     </div>
 </div>
-
+<script>
+    function clearJsErrors() {
+        ['name-error-js', 'phone-error-js', 'date-error-js', 'time-error-js', 'guests-error-js'].forEach(id => {
+            document.getElementById(id).textContent = '';
+        });
+    }
+    function validateBookingFormJS() {
+        clearJsErrors();
+        let valid = true;
+        const name = document.getElementById("name").value.trim();
+        if (name === "") {
+            document.getElementById("name-error-js").textContent = "Name is required.";
+            valid = false;
+        }
+        const phone = document.getElementById("phone").value.trim();
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phone)) {
+            document.getElementById("phone-error-js").textContent = "Enter a valid 10-digit phone number.";
+            valid = false;
+        }
+        const checkInDate = document.getElementById("checkin-date").value;
+        if (!checkInDate) {
+            document.getElementById("date-error-js").textContent = "Select a check-in date.";
+            valid = false;
+        } else {
+            const today = new Date(); today.setHours(0,0,0,0);
+            const selected = new Date(checkInDate);
+            if (selected < today) {
+                document.getElementById("date-error-js").textContent = "Check-in date cannot be in the past.";
+                valid = false;
+            }
+        }
+        const checkInTime = document.getElementById("time").value;
+        if (!checkInTime || checkInTime < "10:00" || checkInTime > "22:00") {
+            document.getElementById("time-error-js").textContent = "Check-in time must be between 10:00 and 22:00.";
+            valid = false;
+        }
+        const guests = document.getElementById("guests").value;
+        if (guests < 1 || guests > 20) {
+            document.getElementById("guests-error-js").textContent = "Number of guests must be between 1 and 20.";
+            valid = false;
+        }
+        return valid;
+    }
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        if (!validateBookingFormJS()) {
+            e.preventDefault();
+        }
+    });
+</script>
 
 </body>
 </html>

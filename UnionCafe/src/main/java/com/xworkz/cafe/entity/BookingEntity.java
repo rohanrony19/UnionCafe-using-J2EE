@@ -13,6 +13,10 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//@NamedQuery(
+//        name = "findAllBookings",
+//        query = "SELECT b FROM BookingEntity b"
+//)
 public class BookingEntity {
 
     @Id
