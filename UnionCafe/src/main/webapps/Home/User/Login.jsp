@@ -55,11 +55,11 @@
 </head>
 
 <body class="d-flex justify-content-center align-items-center bg-light">
-<div class="login-switch">
-    <a href="Login.jsp" class="btn btn-outline-primary " id="userBtn">User</a>
-    <a href="../Admin/AdminLogin.jsp" class="btn btn-outline-primary" id="adminBtn">Admin</a>
+<!--<div class="login-switch">-->
+<!--    <a href="Login.jsp" class="btn btn-outline-primary " id="userBtn">User</a>-->
+<!--    <a href="../Admin/AdminLogin.jsp" class="btn btn-outline-primary" id="adminBtn">Admin</a>-->
 
-</div>
+<!--</div>-->
 <!--<c:if test="${not empty error}">-->
 <!--    <p style="color:red; text-align:center;">${error}</p>-->
 <!--</c:if>-->

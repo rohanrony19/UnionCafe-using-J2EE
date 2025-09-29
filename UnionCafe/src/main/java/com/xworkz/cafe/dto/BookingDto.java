@@ -18,6 +18,8 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class BookingDto {
 
+    private int id;
+
     @NotBlank(message = "Name is required")
     private String name;
 

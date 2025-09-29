@@ -1,13 +1,7 @@
 package com.xworkz.cafe.repository;
-
-import com.xworkz.cafe.dto.RegisterDTO;
 import com.xworkz.cafe.entity.RegisterEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.persistence.*;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
+
 
 public class RegisterRepositoryImpli implements RegisterRepository {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("Cafe");

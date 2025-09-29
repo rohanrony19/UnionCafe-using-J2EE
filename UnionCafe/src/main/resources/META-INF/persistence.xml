@@ -5,6 +5,8 @@
              version="2.0">
     <persistence-unit name="Cafe" transaction-type="RESOURCE_LOCAL">
         <class>com.xworkz.cafe.entity.RegisterEntity</class>
+        <class>com.xworkz.cafe.entity.OrderEntity</class>
+        <class>com.xworkz.cafe.entity.BookingEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/unioncafe"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
