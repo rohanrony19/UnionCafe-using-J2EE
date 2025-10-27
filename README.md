@@ -25,6 +25,9 @@ src/<br>
 ├── dto/ # Data Transfer Objects<br>
 ├── persistence/ # JDBC connection and utility classes<br>
 └── webapp/ # JSP views, static files, and assets<br>
+## 🚀 Demo
+
+🔗 **Live Demo:** [Click here to view UnionCafe](http://localhost:8080/UnionCafe)
 
 ## Home Page
 The Home Page welcomes users with a clean and intuitive interface displaying café highlights and featured menu items. It acts as the entry point for both new visitors and returning customers, allowing easy navigation to categories and account sections.
@@ -62,32 +65,36 @@ The Payment module allows customers to choose their preferred payment method, en
 
 2. **Open in IDE**
 
-Import the project as a Maven project in Eclipse/IntelliJ.
+     -Import the project as a Maven project in Eclipse/IntelliJ.
 
 3. **Database Setup**
 
-Create a MySQL database named unioncafe.
+     -Create a MySQL database named unioncafe.
 
-Import the provided SQL script (unioncafe.sql) if available.
+     -Import the provided SQL script (unioncafe.sql) if available.
 
-Update database credentials in persistence/DBConnection.java.
+     -Update database credentials in persistence/DBConnection.java.
 
 4. **Run the Application**
 
-Deploy the project on Apache Tomcat (v9 or later).
+     -Deploy the project on Apache Tomcat (v9 or later).
 
-Access it at http://localhost:8080/UnionCafe.
+     -Access it at http://localhost:8080/UnionCafe.
 
 5. **Login or Register**
 
-Register as a new user or log in with test credentials.
+     -Register as a new user or log in with test credentials.
 
-💡 Learning Outcomes
+💡 **Learning Outcomes**
 
-Deep understanding of Servlet & JSP integration
+     -Deep understanding of Servlet & JSP integration
 
-Hands-on experience with JDBC and MVC architecture
+     -Hands-on experience with JDBC and MVC architecture
 
-Improved skills in session handling, validations, and mail integration
+     -Improved skills in session handling, validations, and mail integration
+ 
+     -Exposure to full-stack Java application design
 
-Exposure to full-stack Java application design
+🪄 **License**
+
+  This project is licensed under the MIT License – feel free to use and modify it.
