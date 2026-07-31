@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
-<!doctype html>
+<!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
+<!--<%@ page isELIgnored="false" %>-->
+<!DOCTYPE html>
 <html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
@@ -860,32 +860,32 @@
                             <ul class="navbar-nav d-flex flex-row gap-3">
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Home" href="${pageContext.request.contextPath}/Home/User/Home.jsp">
+                                       data-bs-placement="bottom" title="Home" href="${pageContext.request.contextPath}/user/home/home.jsp">
                                         <i class="fa-regular fa-house fa-sm"></i>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Category" href="${pageContext.request.contextPath}/Home/User/Category.jsp">
+                                       data-bs-placement="bottom" title="Category" href="${pageContext.request.contextPath}/menu/category/category.jsp">
                                         <i class="fa-solid fa-layer-group fa-sm"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page" data-bs-toggle="tooltip"
-                                       data-bs-placement="bottom" title="Booking" href="${pageContext.request.contextPath}/Home/User/Booking.jsp">
+                                       data-bs-placement="bottom" title="Booking" href="${pageContext.request.contextPath}/user/booking/booking.jsp">
                                         <i class="fa-solid fa-utensils fa-sm"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cart"
-                                       href="${pageContext.request.contextPath}/Home/User/Cart.jsp">
+                                       href="${pageContext.request.contextPath}/user/cart/cart.jsp">
                                         <i class="fa-solid fa-cart-shopping fa-xs"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                       title="Favorite" href="${pageContext.request.contextPath}/Home/User/favorite.jsp">
+                                       title="Favorite" href="${pageContext.request.contextPath}/user/favorite/favorite.jsp">
                                         <i class="fa-regular fa-heart fa-sm "></i>
                                     </a>
                                 </li>
@@ -906,7 +906,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                               title="Login" href="${pageContext.request.contextPath}/Home/User/Login.jsp">
+                                               title="Login" href="${pageContext.request.contextPath}/auth/login/login.jsp">
                                                 <i class="fa-regular fa-circle-user fa-sm"></i>
                                             </a>
                                         </c:otherwise>
@@ -922,7 +922,7 @@
     <div class="hero-body">
         <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin-top:0">
             <div class="card-body text-center">
-                <img src="${pageContext.request.contextPath}/Home/User/Images/bg_1.jpg"
+                <img src="${pageContext.request.contextPath}/assets/images/hero-banner.jpg"
                      alt="Bakery Items" class="hero-banner" style="background-color: rgba(0,0,0,0.6)">
             </div>
         </div>
@@ -933,12 +933,12 @@
             <p>Savor every moment and flavor at UnionCafe`, where warmth, freshly baked delights, and friendly smiles
                 await you</p>
             <button type="button" class="btn btn-primary me-2"
-                    onclick="window.location.href='${pageContext.request.contextPath}/Home/User/Booking.jsp'">
+                    onclick="window.location.href='${pageContext.request.contextPath}/user/booking/booking.jsp'">
                 Dine-In
             </button>
 
             <button type="button" class="btn btn-primary me-2"
-                    onclick="window.location.href='${pageContext.request.contextPath}/Home/User/Category.jsp'">
+                    onclick="window.location.href='${pageContext.request.contextPath}/menu/category/category.jsp'">
                 Take-Away
             </button>
 
@@ -951,7 +951,7 @@
 <div class="heading" id="category-section">
     <br/>
     <div class="category">
-        <a href="Category.jsp" style="text-decoration: none; color: inherit;">
+        <a href="${pageContext.request.contextPath}/menu/category/category.jsp" style="text-decoration: none; color: inherit;">
             <h3>Category</h3>
         </a>
     </div>
@@ -960,7 +960,7 @@
 
         <!-- Card 1 -->
         <div class="category-card1">
-            <a href="Category/Coffee.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/coffee.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/031/958/727/small/a-cup-of-tea-and-a-teapot-on-a-wooden-table-ai-generated-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
@@ -970,7 +970,7 @@
 
         <!-- Card 2 -->
         <div class="category-card1">
-            <a href="Category/Starters.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/starters.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://thumbs.dreamstime.com/b/indian-starter-tandoori-chicken-tikka-indian-chicken-tikka-tandoori-snack-prepared-chicken-served-mint-chutney-158573913.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -978,7 +978,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Breakfast.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/breakfast.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFa3L5Wr39RXjD4kFyJABtC40WvXZbPLj0sg&s"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -986,7 +986,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Salad.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/salad.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://i0.wp.com/kristineskitchenblog.com/wp-content/uploads/2024/03/fruit-salad-2391-3.jpg?resize=1400%2C2100&ssl=1"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -994,7 +994,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Dessert.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/dessert.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://wallpapercave.com/wp/wp3064856.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1003,7 +1003,7 @@
         </div>
 
         <div class="category-card1">
-            <a href="Category/Cake.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/cake.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/026/349/563/small_2x/indulgent-chocolate-cake-slice-on-wooden-plate-generated-by-ai-free-photo.jpg"
                      class="card-img-top category-image"
                      alt="Black Forest Cake">
@@ -1012,7 +1012,7 @@
         </div>
 
         <div class="category-card1">
-            <a href="Category/Pizza.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/pizza.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1020,7 +1020,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Burger.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/burger.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://img.freepik.com/free-photo/double-cheeseburger_23-2151950841.jpg?semt=ais_hybrid&w=740"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1028,7 +1028,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Dinner.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/dinner.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://t4.ftcdn.net/jpg/03/61/86/91/360_F_361869194_7JGmIOSj2iUNi0AYoVhVyhKvaN6PkOah.jpg"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1036,7 +1036,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Mocktails.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/mocktails.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://images.unsplash.com/photo-1654074518423-750767f571a9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29ja3RhaWxzJTIwYW5kJTIwbW9ja3RhaWxzfGVufDB8fDB8fHww"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1044,7 +1044,7 @@
             </a>
         </div>
         <div class="category-card1">
-            <a href="Category/Drinks.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/drinks.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz2td7otmRRE-6ezW6AcmQHunaqAFY09CwdA&s"
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1053,7 +1053,7 @@
         </div>
 
         <div class="category-card1">
-            <a href="Category/IceCream.jsp" style="text-decoration: none; color: inherit;">
+            <a href="${pageContext.request.contextPath}/menu/category/icecream.jsp" style="text-decoration: none; color: inherit;">
                 <img src="https://media.istockphoto.com/id/936205852/photo/chocolate-ice-cream-in-a-glass-cup.jpg?s=612x612&w=0&k=20&c=gcPTroDVPNSlCS45BkqEG-6-REnKFEzboBpuX8O3lY4="
                      class="card-img-top category-image"
                      alt="Chocolate Cake">
@@ -1076,7 +1076,7 @@
         <div class="row align-items-center">
             <!-- Form Column -->
             <div class="col-md-6">
-                <form action="${pageContext.request.contextPath}/Home/User/booking" method="post" class="p-4 border rounded"
+                <form action="${pageContext.request.contextPath}/booking" method="post" class="p-4 border rounded"
                       style="background-color: #0081a3; color: white;">
                     <h3 class="mb-4 text-center" style="color: white;">Book Your Table</h3>
                     <c:if test="${not empty success}">
@@ -1144,7 +1144,7 @@
 
             <!-- Image Column -->
             <div class="table col-md-6 d-flex justify-content-center">
-                <img src="${pageContext.request.contextPath}/Home/User/Images/img.png" alt="Booking Table"
+                <img src="${pageContext.request.contextPath}/assets/images/booking-table.png" alt="Booking Table"
                      class="img-fluid rounded"/>
             </div>
         </div>
@@ -1241,7 +1241,7 @@
 
     <!-- Product 3 -->
     <div class="card h-50 position-relative">
-        <img src="https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__700_0_0_0_auto.jpg"
+        <img src="https://ranveerbrar.com/wp-content/uploads/2021/02/Masala-dosa-scaled-scaled.jpg"
              class="card-img-top" alt="Masala Dosa">
         <button type="button" class="btn btn-favorite position-absolute top-0 end-0 m-1 p-1"
                 title="Add to Favorites">
@@ -1251,7 +1251,7 @@
         <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
             <input type="hidden" name="productName" value="Masala Dosa">
             <input type="hidden" name="price" value="4.50">
-            <input type="hidden" name="imageUrl" value="https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__700_0_0_0_auto.jpg">
+            <input type="hidden" name="imageUrl" value="https://ranveerbrar.com/wp-content/uploads/2021/02/Masala-dosa-scaled-scaled.jpg">
             <input type="hidden" name="action" value="add">
         </form>
 
@@ -1263,7 +1263,7 @@
                 <!-- Hidden fields for product details -->
                 <input type="hidden" name="productName" value="Masala Dosa">
                 <input type="hidden" name="price" value="4.50">
-                <input type="hidden" name="imageUrl" value="https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__700_0_0_0_auto.jpg">
+                <input type="hidden" name="imageUrl" value="https://ranveerbrar.com/wp-content/uploads/2021/02/Masala-dosa-scaled-scaled.jpg">
                 <input type="hidden" name="quantity" class="quantity-field" value="1">
 
                 <!-- Quantity controls -->
@@ -1386,7 +1386,7 @@
         <form action="${pageContext.request.contextPath}/AddToFavorites" method="post" class="favorite-form d-none">
             <input type="hidden" name="productName" value="Margherita Pizza">
             <input type="hidden" name="price" value="7.00">
-            <input type="hidden" name="imageUrl" value="hhttps://spicethefood.com/wp-content/uploads/2022/05/How-Long-Does-Dominos-Pizza-Last-e1652281636518.jpg">
+            <input type="hidden" name="imageUrl" value="https://spicethefood.com/wp-content/uploads/2022/05/How-Long-Does-Dominos-Pizza-Last-e1652281636518.jpg">
             <input type="hidden" name="action" value="add">
         </form>
         <div class="card-body d-flex flex-column">
@@ -1662,7 +1662,7 @@
         <!-- Blog Card 1 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="${pageContext.request.contextPath}/Home/User/Images/image_3.jpg"
+                <img src="${pageContext.request.contextPath}/assets/images/blog-3.jpg"
                      class="card-img-top" alt="Blog 1">
                 <div class="card-body">
                     <small class="text-muted">August 3, 2025 | Admin</small>
@@ -1675,7 +1675,7 @@
         <!-- Blog Card 2 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="${pageContext.request.contextPath}/Home/User/Images/bg_4.jpg" class="card-img-top"
+                <img src="${pageContext.request.contextPath}/assets/images/blog-1.jpg" class="card-img-top"
                      alt="Blog 2">
                 <div class="card-body">
                     <small class="text-muted">August 10, 2025 | Admin</small>
@@ -1688,7 +1688,7 @@
         <!-- Blog Card 3 -->
         <div class="col-md-4">
             <div class="card blog-card h-100 shadow-sm border-0">
-                <img src="${pageContext.request.contextPath}/Home/User/Images/image_2.jpg"
+                <img src="${pageContext.request.contextPath}/assets/images/blog-2.jpg"
                      class="card-img-top" alt="Blog 3">
                 <div class="card-body">
                     <small class="text-muted">August 17, 2025 | Admin</small>
@@ -1760,7 +1760,7 @@
     <div class="footer-container">
         <div class="footer-logo-contact">
             <!-- Replace with actual logo if available -->
-            <img src="${pageContext.request.contextPath}/Home/User/Images/UnionCafe%60.png" alt="Company Logo"/>
+            <img src="${pageContext.request.contextPath}/assets/images/unioncafe-logo.png" alt="Company Logo"/>
             <p>Your trusted café, serving delicious treats and warm memories.</p>
             <div class="contact-info">
                 <div><i class="fas fa-envelope"></i> support@unioncafe.com</div>
